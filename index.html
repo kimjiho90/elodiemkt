@@ -198,14 +198,37 @@ nav a:hover{color:var(--ink)}
 /* contact */
 .contact{background:var(--inv-bg);color:var(--inv-ink);position:relative;overflow:hidden}
 .contact::after{content:"";position:absolute;right:-10%;bottom:-40%;width:60%;aspect-ratio:1;border-radius:50%;background:var(--grad);opacity:.22;filter:blur(80px);pointer-events:none}
-.contact .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;position:relative;z-index:1}
+.contact .wrap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:56px;align-items:start;position:relative;z-index:1}
 .contact h2{font-family:var(--num);font-weight:900;font-stretch:125%;font-size:clamp(40px,6vw,76px);line-height:1;letter-spacing:-.03em;margin-top:14px}
 .contact h2 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .contact .lead{color:var(--inv-muted);margin-top:22px;max-width:30em}
 .prep{margin-top:32px;border-top:1px solid var(--inv-line);padding-top:20px}
 .prep strong{font-size:14px}
 .prep ul{margin:10px 0 0;padding-left:1.1em;color:var(--inv-muted);font-size:15px}
-.cards{display:grid;gap:10px;align-content:start}
+.cards{display:grid;gap:10px;align-content:start;margin-top:32px}
+.qform{background:var(--surface);color:var(--ink);border-radius:24px;padding:32px;display:grid;gap:16px;min-width:0}
+.qform h3{font-size:22px;font-weight:900;margin-bottom:4px}
+.qform label{display:grid;gap:6px;font-size:13.5px;font-weight:700;min-width:0}
+.qform em{color:var(--accent-ink);font-style:normal}
+.qform input:not([type=checkbox]),.qform select,.qform textarea{font:inherit;font-weight:400;font-size:15px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 14px;width:100%;min-width:0}
+.qform textarea{resize:vertical}
+.qform input:focus,.qform select:focus,.qform textarea:focus{outline:2px solid var(--accent);outline-offset:0;border-color:transparent}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.qform fieldset{border:0;padding:0;margin:0;display:grid;gap:8px}
+.qform legend{font-size:13.5px;font-weight:700;padding:0;margin-bottom:8px}
+.qform .chips{display:flex;flex-wrap:wrap;gap:6px}
+.qform .chips label{display:block;cursor:pointer}
+.qform .chips input{position:absolute;opacity:0;width:1px;height:1px}
+.qform .chips span{display:inline-block;font-size:13.5px;font-weight:700;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--muted)}
+.qform .chips input:checked+span{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.qform .chips input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
+.agree{grid-template-columns:auto minmax(0,1fr)!important;align-items:start;gap:10px!important;font-weight:500!important}
+.agree input{width:18px;height:18px;margin-top:2px;accent-color:var(--accent)}
+.agree small{display:block;color:var(--muted);font-weight:400;font-size:12.5px;margin-top:2px}
+.hp{position:absolute!important;left:-9999px;width:1px;height:1px;opacity:0}
+.submit{font-family:var(--kr);font-size:16px;font-weight:900;border:0;border-radius:999px;padding:16px;background:var(--grad);color:#fff;cursor:pointer}
+.submit:disabled{opacity:.6;cursor:wait}
+@media (max-width:560px){.row2{grid-template-columns:1fr}.qform{padding:22px}}
 .cline{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 20px;border:1px solid var(--inv-line);border-radius:16px;background:color-mix(in srgb,var(--inv-ink) 4%,transparent);min-width:0}
 .cline small{display:block;font-size:11.5px;color:var(--inv-muted);font-weight:700;letter-spacing:.08em}
 .cline .v{font-weight:700;font-size:18px;word-break:break-all;user-select:all;font-family:var(--num)}
@@ -347,22 +370,56 @@ footer .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap
       <div>
         <div class="eyebrow">Contact</div>
         <h2>BRAND GROWTH<br><span class="g">TOGETHER</span></h2>
-        <p class="lead">캠페인 문의와 회사소개서 요청은 메일이나 카카오톡으로 편하게 연락 주세요.</p>
-        <div class="prep">
-          <strong>문의 시 함께 알려주시면 빨라요</strong>
-          <ul>
-            <li>브랜드명과 제품 (상세페이지 링크)</li>
-            <li>원하는 채널 (X, 숏폼, 네이버 등)</li>
-            <li>예산 범위와 진행 희망 시기</li>
-          </ul>
+        <p class="lead">문의를 남겨주시면 영업일 기준 하루 안에 연락드립니다. 회사소개서가 필요하시면 문의 내용에 적어주세요.</p>
+        <div class="cards">
+          <div class="cline"><div><small>E-MAIL</small><span class="v" id="v-mail">elodiee@naver.com</span></div><button class="copy" type="button" id="c-mail" data-t="v-mail">복사</button></div>
+          <div class="cline"><div><small>TEL</small><span class="v" id="v-tel">010-6602-8343</span></div><button class="copy" type="button" id="c-tel" data-t="v-tel">복사</button></div>
+          <div class="cline"><div><small>KAKAOTALK ID</small><span class="v" id="v-kakao">kzo199</span></div><button class="copy" type="button" id="c-kakao" data-t="v-kakao">복사</button></div>
         </div>
       </div>
-      <div class="cards">
-        <div class="cline"><div><small>E-MAIL</small><span class="v" id="v-mail">elodiee@naver.com</span></div><button class="copy" type="button" id="c-mail" data-t="v-mail">복사</button></div>
-        <div class="cline"><div><small>TEL</small><span class="v" id="v-tel">010-6602-8343</span></div><button class="copy" type="button" id="c-tel" data-t="v-tel">복사</button></div>
-        <div class="cline"><div><small>KAKAOTALK ID</small><span class="v" id="v-kakao">kzo199</span></div><button class="copy" type="button" id="c-kakao" data-t="v-kakao">복사</button></div>
-        <p class="note">회사소개서는 메일로 요청하시면 바로 보내드립니다.</p>
-      </div>
+      <form class="qform" id="qform" action="https://formsubmit.co/elodiee@naver.com" method="POST" accept-charset="UTF-8">
+        <input type="hidden" name="_subject" value="[엘로디 홈페이지] 새 광고 문의">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://elodiemkt.kr/thanks.html">
+        <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <h3>광고 문의</h3>
+        <div class="row2">
+          <label for="f-brand"><span>브랜드(회사)명 <em>*</em></span><input id="f-brand" name="브랜드명" required autocomplete="organization"></label>
+          <label for="f-name"><span>담당자명 <em>*</em></span><input id="f-name" name="담당자명" required autocomplete="name"></label>
+        </div>
+        <div class="row2">
+          <label for="f-tel"><span>연락처 <em>*</em></span><input id="f-tel" name="연락처" type="tel" required autocomplete="tel" placeholder="010-0000-0000"></label>
+          <label for="f-email"><span>이메일 <em>*</em></span><input id="f-email" name="이메일" type="email" required autocomplete="email"></label>
+        </div>
+        <fieldset>
+          <legend>희망 채널</legend>
+          <div class="chips">
+            <label><input type="checkbox" name="희망채널" value="X(트위터)" id="ch-x"><span>X(트위터)</span></label>
+            <label><input type="checkbox" name="희망채널" value="숏폼" id="ch-s"><span>숏폼</span></label>
+            <label><input type="checkbox" name="희망채널" value="유튜브" id="ch-y"><span>유튜브</span></label>
+            <label><input type="checkbox" name="희망채널" value="네이버" id="ch-n"><span>네이버</span></label>
+            <label><input type="checkbox" name="희망채널" value="인스타그램" id="ch-i"><span>인스타그램</span></label>
+            <label><input type="checkbox" name="희망채널" value="카페·커뮤니티" id="ch-c"><span>카페·커뮤니티</span></label>
+          </div>
+        </fieldset>
+        <div class="row2">
+          <label for="f-budget">예산
+            <select id="f-budget" name="예산">
+              <option value="미정">선택해 주세요</option>
+              <option>100만 원 미만</option>
+              <option>100~300만 원</option>
+              <option>300~500만 원</option>
+              <option>500만 원 이상</option>
+              <option>미정</option>
+            </select>
+          </label>
+          <label for="f-when">진행 희망 시기<input id="f-when" name="진행희망시기" placeholder="예: 12월 초"></label>
+        </div>
+        <label for="f-link">제품 링크<input id="f-link" name="제품링크" type="url" placeholder="https://"></label>
+        <label for="f-msg">문의 내용<textarea id="f-msg" name="문의내용" rows="4" placeholder="제품 소개, 원하는 진행 방식 등을 자유롭게 적어주세요."></textarea></label>
+        <label class="agree" for="f-agree"><input type="checkbox" id="f-agree" name="개인정보동의" value="동의함" required><span>개인정보 수집·이용에 동의합니다. <em>*</em><small>수집 항목: 담당자명, 연락처, 이메일 · 목적: 광고 문의 상담 · 보유 기간: 상담 완료 후 1년</small></span></label>
+        <button type="submit" class="submit" id="f-submit">문의 보내기</button>
+      </form>
     </div>
   </section>
 </main>
@@ -504,6 +561,7 @@ document.querySelectorAll('.copy').forEach(btn=>btn.addEventListener('click',()=
   const fallback=()=>{const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='선택됨';reset()};
   try{navigator.clipboard.writeText(txt).then(()=>{btn.textContent='복사됨';reset()},fallback)}catch(e){fallback()}
 }));
+document.getElementById('qform').addEventListener('submit',e=>{const b=document.getElementById('f-submit');b.disabled=true;b.textContent='보내는 중…'});
 </script>
 
 </body>
