@@ -138,6 +138,43 @@ nav a:hover{color:var(--ink)}
 @media (max-width:820px){.about-grid{grid-template-columns:1fr;gap:20px}.about-pts li{grid-template-columns:1fr;gap:2px}}
 #service.sec{padding-top:72px}
 
+.stats .wrap.basis{display:block;font-size:12.5px;color:var(--muted);padding-block:0 18px}
+.brandbar{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface)}
+.brandbar .wrap{display:flex;align-items:center;gap:20px;padding-block:18px;min-width:0}
+.bb-l{font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--accent-ink);white-space:nowrap}
+.bb-names{display:flex;flex-wrap:wrap;gap:6px 22px;font-size:16px;font-weight:700;color:var(--muted);min-width:0}
+@media (max-width:600px){.brandbar .wrap{flex-direction:column;align-items:flex-start;gap:8px}.bb-names{font-size:14px;gap:4px 14px}}
+.svc-main{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.big{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:30px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.big:first-child{background:var(--inv-bg);color:var(--inv-ink);border-color:var(--inv-bg)}
+.big:first-child p{color:var(--inv-muted)}
+.big:first-child li{border-color:var(--inv-line)}
+.big .tag{font-size:12px;font-weight:700;color:var(--accent-ink);letter-spacing:.04em;margin-top:6px}
+.big h3{font-size:clamp(20px,2.2vw,26px);font-weight:900}
+.big p{color:var(--muted);font-size:15px}
+.big ul{list-style:none;padding:0;margin:4px 0 0;display:flex;flex-wrap:wrap;gap:6px}
+.big li{font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:999px;border:1px solid var(--line)}
+.ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;flex:none;color:#fff;font-family:var(--num);font-weight:900;font-size:18px}
+.ic.sm{width:36px;height:36px;border-radius:10px;font-size:15px}
+.svc-sub{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:12px}
+.mini{display:flex;gap:12px;align-items:center;padding:16px;border:1px solid var(--line);border-radius:16px;min-width:0}
+.mini h3{font-size:15px;font-weight:900}
+.mini p{font-size:13px;color:var(--muted);line-height:1.5}
+@media (max-width:900px){.svc-sub{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.svc-main,.svc-sub{grid-template-columns:1fr}.big{padding:24px}}
+.process{padding-block:72px;border-top:1px solid var(--line)}
+.flow{list-style:none;padding:0;margin:18px 0 0;display:grid;grid-template-columns:repeat(5,1fr);counter-reset:f}
+.flow li{counter-increment:f;padding:18px 18px 18px 0;border-top:2px solid var(--line);display:grid;gap:4px;min-width:0;position:relative}
+.flow li::before{content:"0" counter(f);font-family:var(--num);font-weight:900;font-size:13px;color:var(--accent-ink)}
+.flow li:last-child{border-top-color:var(--accent)}
+.flow b{font-size:17px;font-weight:900}
+.flow span{font-size:13.5px;color:var(--muted)}
+@media (max-width:820px){.flow{grid-template-columns:1fr}.flow li{grid-template-columns:36px minmax(0,1fr);column-gap:8px;padding:14px 0;border-top-width:1px}.flow li::before{grid-row:span 2}}
+.hint{font-size:12.5px;color:var(--muted);margin-top:-6px}
+.hint.err{color:#E5484D;font-weight:700}
+.cbtns{display:flex;gap:6px;flex:none}
+a.copy{text-decoration:none;display:inline-block}
+
 /* references */
 .refsec{background:var(--surface);border-block:1px solid var(--line)}
 .filters{display:flex;flex-wrap:wrap;gap:20px;margin-bottom:32px;align-items:center}
@@ -258,6 +295,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap
       <a href="#about">회사소개</a>
       <a href="#service">서비스</a>
       <a href="#reference">레퍼런스</a>
+      <a href="#process">진행 과정</a>
             <a href="#contact">문의</a>
     </nav>
     <a class="hbtn" href="#contact">광고 문의</a>
@@ -270,8 +308,8 @@ footer .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap
       <div class="hero-top">
         <div>
           <div class="eyebrow">Advertising Consult · Viral Marketing · Influencer Management</div>
-          <h1>피드에 뜨고,<br>검색에 걸리고,<br><span class="g">결국 팔리게.</span></h1>
-          <p class="lead">X(트위터)·숏폼 인플루언서 마케팅 전문 광고대행사 엘로디입니다. 섭외부터 업로드, 결과 보고까지 한 번에 진행합니다.</p>
+          <h1>타임라인에서<br>먼저 터지는<br><span class="g">뷰티·패션 바이럴.</span></h1>
+          <p class="lead">10~20대 여성에게 뷰티·패션 브랜드를 알리는 X(트위터)·숏폼 인플루언서 마케팅 광고대행사 엘로디입니다. 섭외부터 업로드, 결과 보고까지 한 번에 진행합니다.</p>
           <div class="btns">
             <a class="btn primary" href="#contact">캠페인 문의하기</a>
             <a class="btn" href="#reference">레퍼런스 보기</a>
@@ -291,6 +329,10 @@ footer .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap
         <div class="stat"><div class="n" id="st-cnt">42<small>건</small></div><div class="l">뷰티·패션 공개 레퍼런스</div></div>
         <div class="stat"><div class="n">53.5<small>만</small></div><div class="l">숏폼 최고 조회수</div></div>
       </div>
+      <div class="wrap basis" id="basis">2026년 11월 기준 · 공개 레퍼런스 합산 · 게시물 화면에 표시된 수치</div>
+    </div>
+    <div class="brandbar">
+      <div class="wrap"><span class="bb-l">함께한 브랜드</span><div class="bb-names" id="bbNames"></div></div>
     </div>
   </section>
 
@@ -321,13 +363,15 @@ footer .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap
           <h2>이런 광고를 합니다</h2>
         </div>
       </div>
-      <div class="svc-list">
-        <div class="row feature"><span class="ic" style="background:#000;border:1px solid #444">X</span><h3>X(트위터) 인플루언서</h3><p>뷰티·패션 인플루언서, 큐레이션 계정 게시 · 할인정보 · RT 이벤트</p></div>
-        <div class="row"><span class="ic" style="background:linear-gradient(135deg,#FF0050,#7A2BF5)">S</span><h3>숏폼</h3><p>유튜브 쇼츠 · 인스타그램 릴스 · 틱톡 크리에이터 리뷰</p></div>
-        <div class="row"><span class="ic" style="background:#FF0000">▶</span><h3>유튜브 롱폼</h3><p>유튜버 리뷰 · 하울 · 브랜디드 콘텐츠</p></div>
-        <div class="row"><span class="ic" style="background:#03C75A">N</span><h3>네이버</h3><p>블로그·인플루언서 체험단 · 기자단 · 키워드 상위노출</p></div>
-        <div class="row"><span class="ic" style="background:linear-gradient(45deg,#F9A825,#E1306C 50%,#833AB4)">◎</span><h3>인스타그램</h3><p>체험단 · 기자단</p></div>
-        <div class="row"><span class="ic" style="background:#FF8A00">C</span><h3>카페·커뮤니티</h3><p>카페 · 커뮤니티 바이럴 · 핫딜 등록</p></div>
+      <div class="svc-main">
+        <article class="big"><span class="ic" style="background:#000;border:1px solid #444">X</span><div class="tag">주력 서비스</div><h3>X(트위터) 인플루언서 마케팅</h3><p>뷰티·패션 인플루언서와 큐레이션 계정으로 신제품, 할인 정보, RT 이벤트를 빠르게 퍼뜨립니다. 단일 게시물 조회수 131.5만까지 만들었습니다.</p><ul><li>인플루언서 게시</li><li>큐레이션 계정</li><li>할인·세일 정보</li><li>RT 이벤트</li></ul></article>
+        <article class="big"><span class="ic" style="background:linear-gradient(135deg,#FF0050,#7A2BF5)">S</span><div class="tag">주력 서비스</div><h3>숏폼 인플루언서 마케팅</h3><p>크리에이터가 제품을 직접 써보는 짧은 영상으로 유튜브 쇼츠, 인스타그램 릴스, 틱톡에 자연스럽게 노출합니다.</p><ul><li>유튜브 쇼츠</li><li>인스타그램 릴스</li><li>틱톡</li></ul></article>
+      </div>
+      <div class="svc-sub">
+        <div class="mini"><span class="ic sm" style="background:#FF0000">▶</span><div><h3>유튜브 롱폼</h3><p>리뷰 · 하울 · 브랜디드 콘텐츠</p></div></div>
+        <div class="mini"><span class="ic sm" style="background:#03C75A">N</span><div><h3>네이버</h3><p>블로그·인플루언서 체험단 · 키워드 상위노출</p></div></div>
+        <div class="mini"><span class="ic sm" style="background:linear-gradient(45deg,#F9A825,#E1306C 50%,#833AB4)">◎</span><div><h3>인스타그램</h3><p>체험단 · 기자단</p></div></div>
+        <div class="mini"><span class="ic sm" style="background:#FF8A00">C</span><div><h3>카페·커뮤니티</h3><p>커뮤니티 바이럴 · 핫딜 등록</p></div></div>
       </div>
     </div>
   </section>
@@ -365,6 +409,19 @@ footer .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap
     </div>
   </section>
 
+  <section class="process" id="process">
+    <div class="wrap">
+      <div class="eyebrow">Process</div>
+      <ol class="flow">
+        <li><b>문의</b><span>제품, 예산, 일정 공유</span></li>
+        <li><b>제안·견적</b><span>채널과 인원, 견적 제안</span></li>
+        <li><b>섭외·일정 확정</b><span>인플루언서 확정, 가이드 전달</span></li>
+        <li><b>업로드</b><span>일정에 맞춰 게시, 진행 관리</span></li>
+        <li><b>결과 보고</b><span>조회수·반응 보고서 전달</span></li>
+      </ol>
+    </div>
+  </section>
+
   <section class="sec contact" id="contact">
     <div class="wrap">
       <div>
@@ -372,7 +429,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap
         <h2>BRAND GROWTH<br><span class="g">TOGETHER</span></h2>
         <p class="lead">문의를 남겨주시면 영업일 기준 하루 안에 연락드립니다. 회사소개서가 필요하시면 문의 내용에 적어주세요.</p>
         <div class="cards">
-          <div class="cline"><div><small>E-MAIL</small><span class="v" id="v-mail">elodiee@naver.com</span></div><button class="copy" type="button" id="c-mail" data-t="v-mail">복사</button></div>
+          <div class="cline"><div><small>E-MAIL</small><span class="v" id="v-mail">elodiee@naver.com</span></div><div class="cbtns"><a class="copy" href="mailto:elodiee@naver.com">메일 쓰기</a><button class="copy" type="button" id="c-mail" data-t="v-mail">복사</button></div></div>
           <div class="cline"><div><small>TEL</small><span class="v" id="v-tel">010-6602-8343</span></div><button class="copy" type="button" id="c-tel" data-t="v-tel">복사</button></div>
           <div class="cline"><div><small>KAKAOTALK ID</small><span class="v" id="v-kakao">kzo199</span></div><button class="copy" type="button" id="c-kakao" data-t="v-kakao">복사</button></div>
         </div>
@@ -388,9 +445,10 @@ footer .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap
           <label for="f-name"><span>담당자명 <em>*</em></span><input id="f-name" name="담당자명" required autocomplete="name"></label>
         </div>
         <div class="row2">
-          <label for="f-tel"><span>연락처 <em>*</em></span><input id="f-tel" name="연락처" type="tel" required autocomplete="tel" placeholder="010-0000-0000"></label>
-          <label for="f-email"><span>이메일 <em>*</em></span><input id="f-email" name="이메일" type="email" required autocomplete="email"></label>
+          <label for="f-tel"><span>연락처</span><input id="f-tel" name="연락처" type="tel" autocomplete="tel" placeholder="010-0000-0000"></label>
+          <label for="f-email"><span>이메일</span><input id="f-email" name="이메일" type="email" autocomplete="email"></label>
         </div>
+        <p class="hint" id="contactHint">연락처와 이메일 중 하나는 꼭 적어주세요.</p>
         <fieldset>
           <legend>희망 채널</legend>
           <div class="chips">
@@ -417,7 +475,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap
         </div>
         <label for="f-link">제품 링크<input id="f-link" name="제품링크" type="url" placeholder="https://"></label>
         <label for="f-msg">문의 내용<textarea id="f-msg" name="문의내용" rows="4" placeholder="제품 소개, 원하는 진행 방식 등을 자유롭게 적어주세요."></textarea></label>
-        <label class="agree" for="f-agree"><input type="checkbox" id="f-agree" name="개인정보동의" value="동의함" required><span>개인정보 수집·이용에 동의합니다. <em>*</em><small>수집 항목: 담당자명, 연락처, 이메일 · 목적: 광고 문의 상담 · 보유 기간: 상담 완료 후 1년 · <a href="/privacy.html" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">자세히 보기</a></small></span></label>
+        <label class="agree" for="f-agree"><input type="checkbox" id="f-agree" name="개인정보동의" value="동의함" required><span>개인정보 수집·이용에 동의합니다. <em>*</em><small>수집 항목: 담당자명, 연락처 또는 이메일 · 목적: 광고 문의 상담 · 보유 기간: 상담 완료 후 1년 · <a href="/privacy.html" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">자세히 보기</a></small></span></label>
         <button type="submit" class="submit" id="f-submit">문의 보내기</button>
       </form>
     </div>
@@ -505,6 +563,8 @@ const label={x:'X',s:'숏폼'}, catL={b:'뷰티',f:'패션'};
 const total=R.reduce((a,r)=>a+toNum(r[5]),0);
 document.getElementById('st-total').innerHTML=Math.floor(total/1e5)*10+'<small>만+</small>';
 document.getElementById('st-cnt').innerHTML=R.length+'<small>건</small>';
+document.getElementById('basis').textContent='2026년 11월 기준 · 공개 레퍼런스 '+R.length+'건 합산 · 게시물 화면에 표시된 수치';
+document.getElementById('bbNames').innerHTML=[...new Set([...R].sort((a,b)=>toNum(b[5])-toNum(a[5])).map(r=>r[3]))].slice(0,12).map(n=>'<span>'+n+'</span>').join('');
 
 // 히어로 스트립: 조회수 높은 순
 const ranked=[...R].filter(r=>r[8]).sort((a,b)=>toNum(b[5])-toNum(a[5]));
@@ -561,7 +621,10 @@ document.querySelectorAll('.copy').forEach(btn=>btn.addEventListener('click',()=
   const fallback=()=>{const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='선택됨';reset()};
   try{navigator.clipboard.writeText(txt).then(()=>{btn.textContent='복사됨';reset()},fallback)}catch(e){fallback()}
 }));
-document.getElementById('qform').addEventListener('submit',e=>{const b=document.getElementById('f-submit');b.disabled=true;b.textContent='보내는 중…'});
+document.getElementById('qform').addEventListener('submit',e=>{
+  const t=document.getElementById('f-tel'),m=document.getElementById('f-email'),h=document.getElementById('contactHint');
+  if(!t.value.trim()&&!m.value.trim()){e.preventDefault();h.classList.add('err');t.focus();return}
+  h.classList.remove('err');const b=document.getElementById('f-submit');b.disabled=true;b.textContent='보내는 중…'});
 </script>
 
 </body>
