@@ -180,6 +180,21 @@ a.copy{text-decoration:none;display:inline-block}
 .direct b{display:block;font-size:17px;font-weight:900;margin-bottom:6px}
 .direct p{color:var(--muted);font-size:14.5px}
 
+.feat{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:40px;align-items:center;padding:28px;border-radius:24px;background:var(--bg);border:1px solid var(--line);margin-bottom:56px}
+.feat-pics{display:grid;grid-template-columns:1.4fr 1fr;grid-template-rows:1fr 1fr;gap:10px;min-width:0}
+.fp{padding:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;cursor:zoom-in;min-width:0}
+.fp:first-child{grid-row:span 2}
+.fp img{width:100%;height:100%;object-fit:contain;aspect-ratio:auto}
+.feat-body h3{font-size:clamp(22px,2.6vw,30px);font-weight:900;margin:10px 0 18px;line-height:1.3}
+.feat-dl{margin:0;display:grid;gap:0;border-top:1px solid var(--line)}
+.feat-dl div{display:grid;grid-template-columns:88px minmax(0,1fr);gap:12px;padding-block:11px;border-bottom:1px solid var(--line)}
+.feat-dl dt{font-size:13px;font-weight:700;color:var(--muted)}
+.feat-dl dd{margin:0;font-size:15px}
+.feat-nums{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
+.feat-nums b{display:block;font-family:var(--num);font-weight:900;font-stretch:125%;font-size:clamp(22px,2.4vw,30px);color:var(--accent-ink);font-variant-numeric:tabular-nums;line-height:1.1}
+.feat-nums span{font-size:12.5px;color:var(--muted)}
+@media (max-width:860px){.feat{grid-template-columns:1fr;gap:24px;padding:18px}}
+
 /* references */
 .refsec{background:var(--surface);border-block:1px solid var(--line)}
 .filters{display:flex;flex-wrap:wrap;gap:20px;margin-bottom:32px;align-items:center}
@@ -394,6 +409,28 @@ footer .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap
         </div>
         <p>실제 진행한 게시물입니다. 수치는 게시물 화면 기준입니다.</p>
       </div>
+      <article class="feat" id="feat">
+        <div class="feat-pics">
+          <button type="button" class="fp" data-i="0" aria-label="다비치 대표 게시물 크게 보기"><img src="ref/b-x-01.jpg" alt="다비치 한달용 렌즈 3쌍 9,900원 할인 게시물"></button>
+          <button type="button" class="fp" data-i="5" aria-label="다비치 게시물 크게 보기"><img src="ref/b-x-21.jpg" alt="다비치 3팩 세일 게시물"></button>
+          <button type="button" class="fp" data-i="4" aria-label="다비치 게시물 크게 보기"><img src="ref/b-x-20.jpg" alt="다비치 3팩 19,800원 게시물"></button>
+        </div>
+        <div class="feat-body">
+          <div class="eyebrow">대표 사례</div>
+          <h3>다비치 컬러렌즈 X(트위터) 프로모션</h3>
+          <dl class="feat-dl">
+            <div><dt>목적</dt><dd>할인 프로모션과 신제품 출시를 10~20대에게 알리기</dd></div>
+            <div><dt>진행</dt><dd>프로모션마다 X 인플루언서·큐레이션 계정 게시</dd></div>
+            <div><dt>엘로디 담당</dt><dd>인플루언서 섭외, 업로드 일정 관리, 결과 보고</dd></div>
+          </dl>
+          <div class="feat-nums">
+            <div><b id="dv-sum">238.8만</b><span>누적 조회수 (<span id="dv-cnt">6</span>건)</span></div>
+            <div><b>131.5만</b><span>최고 조회수</span></div>
+            <div><b>7.4천</b><span>최고 좋아요</span></div>
+          </div>
+        </div>
+      </article>
+
       <div class="filters">
         <div class="seg" role="group" aria-label="카테고리">
           <button type="button" id="fc-all" data-k="cat" data-v="all" aria-pressed="true">전체</button>
@@ -572,6 +609,8 @@ const label={x:'X',s:'숏폼'}, catL={b:'뷰티',f:'패션'};
 const total=R.reduce((a,r)=>a+toNum(r[5]),0);
 document.getElementById('st-total').innerHTML=Math.floor(total/1e5)*10+'<small>만+</small>';
 document.getElementById('st-cnt').innerHTML=R.length+'<small>건</small>';
+{const dv=R.filter(r=>r[3]==='다비치'),sum=dv.reduce((a,r)=>a+toNum(r[5]),0);document.getElementById('dv-sum').textContent=(Math.round(sum/1e3)/10)+'만';document.getElementById('dv-cnt').textContent=dv.length;
+ const dvi=dv.map(r=>R.indexOf(r));document.querySelectorAll('.fp').forEach(btn=>btn.addEventListener('click',()=>{const r=R.find(x=>img(x)===btn.querySelector('img').getAttribute('src'));current=dv.slice().sort((a,b)=>toNum(b[5])-toNum(a[5]));pos=current.indexOf(r);show();lb.hidden=false;document.body.style.overflow='hidden';document.getElementById('lbClose').focus()}));}
 document.getElementById('basis').textContent='2026년 11월 기준 · 공개 레퍼런스 '+R.length+'건 합산 · 게시물 화면에 표시된 수치';
 document.getElementById('bbNames').innerHTML=[...new Set([...R].sort((a,b)=>toNum(b[5])-toNum(a[5])).map(r=>r[3]))].slice(0,12).map(n=>'<span>'+n+'</span>').join('');
 
