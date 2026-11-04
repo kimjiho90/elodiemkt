@@ -410,28 +410,6 @@ footer .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap
         </div>
         <p>실제 진행한 게시물입니다. 수치는 게시물 화면 기준입니다.</p>
       </div>
-      <article class="feat" id="feat">
-        <div class="feat-pics">
-          <button type="button" class="fp" data-i="0" aria-label="다비치 대표 게시물 크게 보기"><img src="ref/b-x-01.jpg" alt="다비치 한달용 렌즈 3쌍 9,900원 할인 게시물"></button>
-          <button type="button" class="fp" data-i="5" aria-label="다비치 게시물 크게 보기"><img src="ref/b-x-21.jpg" alt="다비치 3팩 세일 게시물"></button>
-          <button type="button" class="fp" data-i="4" aria-label="다비치 게시물 크게 보기"><img src="ref/b-x-20.jpg" alt="다비치 3팩 19,800원 게시물"></button>
-        </div>
-        <div class="feat-body">
-          <div class="eyebrow">대표 사례</div>
-          <h3>다비치 컬러렌즈 X(트위터) 프로모션</h3>
-          <dl class="feat-dl">
-            <div><dt>목적</dt><dd>할인 프로모션과 신제품 출시를 10~20대에게 알리기</dd></div>
-            <div><dt>진행</dt><dd>프로모션마다 X 인플루언서·큐레이션 계정 게시</dd></div>
-            <div><dt>엘로디 담당</dt><dd>인플루언서 섭외, 업로드 일정 관리, 결과 보고</dd></div>
-          </dl>
-          <div class="feat-nums">
-            <div><b id="dv-sum">238.8만</b><span>누적 조회수 (<span id="dv-cnt">6</span>건)</span></div>
-            <div><b>131.5만</b><span>최고 조회수</span></div>
-            <div><b>7.4천</b><span>최고 좋아요</span></div>
-          </div>
-        </div>
-      </article>
-
       <div class="filters">
         <div class="seg" role="group" aria-label="카테고리">
           <button type="button" id="fc-all" data-k="cat" data-v="all" aria-pressed="true">전체</button>
@@ -610,8 +588,6 @@ const label={x:'X',s:'숏폼'}, catL={b:'뷰티',f:'패션'};
 const total=R.reduce((a,r)=>a+toNum(r[5]),0);
 document.getElementById('st-total').innerHTML=Math.floor(total/1e5)*10+'<small>만+</small>';
 document.getElementById('st-cnt').innerHTML=R.length+'<small>건</small>';
-{const dv=R.filter(r=>r[3]==='다비치'),sum=dv.reduce((a,r)=>a+toNum(r[5]),0);document.getElementById('dv-sum').textContent=(Math.round(sum/1e3)/10)+'만';document.getElementById('dv-cnt').textContent=dv.length;
- const dvi=dv.map(r=>R.indexOf(r));document.querySelectorAll('.fp').forEach(btn=>btn.addEventListener('click',()=>{const r=R.find(x=>img(x)===btn.querySelector('img').getAttribute('src'));current=dv.slice().sort((a,b)=>toNum(b[5])-toNum(a[5]));pos=current.indexOf(r);show();lb.hidden=false;document.body.style.overflow='hidden';document.getElementById('lbClose').focus()}));}
 document.getElementById('basis').textContent='2026년 11월 기준 · 공개 레퍼런스 '+R.length+'건 합산 · 게시물 화면에 표시된 수치';
 
 // 히어로 스트립: 조회수 높은 순
