@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>진행 내역 | 엘로디마케팅</title>
+<meta name="description" content="엘로디마케팅이 진행한 X(트위터)·숏폼 인플루언서 마케팅 캠페인을 연도별, 월별로 정리했습니다.">
+<link rel="canonical" href="https://elodiemkt.kr/work/">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,700;125,900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
+<style>[hidden]{display:none!important}
+/* Layout: 엘로디 사이트 토큰을 그대로 쓰는 월별 게시판 — 연도 요약 → 필터 → 월 헤더 + 행 목록 */
+:root{
+  --bg:#F7F6F4; --surface:#FFFFFF; --ink:#16141A; --muted:#6B6670; --line:#E6E2E0;
+  --accent:#FF5B1F; --accent-ink:#D9420C; --soft:#FFEDE4;
+  --grad:linear-gradient(100deg,#FF7A1A 0%,#FF4A4A 45%,#F0368A 100%);
+  --kr:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --num:"Archivo","Noto Sans KR",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#121014;--surface:#1C1A1F;--ink:#F4F1F2;--muted:#A39DA6;--line:#2C2930;--accent:#FF6B33;--accent-ink:#FF8A5C;--soft:#33201A;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121014;--surface:#1C1A1F;--ink:#F4F1F2;--muted:#A39DA6;--line:#2C2930;--accent:#FF6B33;--accent-ink:#FF8A5C;--soft:#33201A;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--kr);font-size:15px;line-height:1.6;word-break:keep-all}
+.wrap{max-width:1000px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:48px 72px}
+.note{background:var(--soft);color:var(--accent-ink);font-size:13px;font-weight:700;padding:10px 14px;border-radius:10px;margin-bottom:28px}
+.eyebrow{font-family:var(--num);font-weight:700;font-size:12px;letter-spacing:.16em;color:var(--accent-ink)}
+h1{font-size:clamp(28px,4.4vw,44px);font-weight:900;letter-spacing:-.03em;margin:10px 0 6px;text-wrap:balance}
+.sub{color:var(--muted);margin:0}
+.years{display:flex;gap:6px;margin:28px 0 18px}
+.years button,.seg button{font-family:var(--kr);font-weight:700;font-size:14px;border:1px solid var(--line);background:var(--surface);color:var(--muted);padding:8px 16px;border-radius:999px;cursor:pointer}
+.years button[aria-pressed="true"],.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.sum{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line);margin-bottom:24px}
+.sum div{padding:18px 16px 18px 0;min-width:0}
+.sum div+div{padding-left:20px;border-left:1px solid var(--line)}
+.sum b{display:block;font-family:var(--num);font-weight:900;font-stretch:125%;font-size:clamp(22px,3vw,32px);font-variant-numeric:tabular-nums;line-height:1.15}
+.sum span{font-size:13px;color:var(--muted)}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.month{margin-top:28px}
+.month h2{font-family:var(--num);font-size:14px;font-weight:700;letter-spacing:.08em;color:var(--muted);margin:0 0 6px;display:flex;justify-content:space-between}
+.month h2 small{font-family:var(--kr);font-weight:500;letter-spacing:0}
+.rows{list-style:none;margin:0;padding:0;background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.row{display:grid;grid-template-columns:62px 56px minmax(0,1fr) auto;gap:14px;align-items:center;padding:12px 16px;border-top:1px solid var(--line);cursor:pointer}
+.row:first-child{border-top:0}
+.row:hover{background:var(--bg)}
+.d{font-family:var(--num);font-weight:700;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.th{width:56px;height:56px;border-radius:10px;overflow:hidden;background:#fff;border:1px solid var(--line)}
+.th img{width:100%;height:100%;object-fit:cover;object-position:top}
+.t{min-width:0}
+.t b{display:block;font-size:15px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chips{display:flex;gap:4px;margin-top:4px}
+.chip{font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--bg);border:1px solid var(--line);color:var(--muted)}
+.v{text-align:right}
+.v b{display:block;font-family:var(--num);font-weight:900;font-size:17px;color:var(--accent-ink);font-variant-numeric:tabular-nums}
+.v span{font-size:11.5px;color:var(--muted)}
+.empty{padding:40px;text-align:center;color:var(--muted);background:var(--surface);border:1px dashed var(--line);border-radius:16px;margin-top:24px}
+.lb{position:fixed;inset:0;background:rgba(10,9,11,.88);display:flex;align-items:center;justify-content:center;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));z-index:20}
+.lb figure{margin:0;max-width:min(520px,100%);text-align:center;color:#F4F1F2}
+.lb img{max-width:100%;max-height:calc(100vh - 140px);border-radius:12px;background:#fff}
+.lb figcaption{margin-top:10px;font-size:14px}
+.lb button{position:absolute;top:max(16px,env(safe-area-inset-top,0px));right:max(16px,env(safe-area-inset-right,0px));width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:#fff;font-size:18px;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (max-width:560px){.row{grid-template-columns:48px minmax(0,1fr) auto;gap:10px}.row .d{display:none}.th{width:48px;height:48px}.sum{grid-template-columns:1fr 1fr}.sum div:nth-child(3){grid-column:1/-1;padding-left:0;border-left:0;border-top:1px solid var(--line)}}
+
+body{margin:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:20;background:var(--bg)}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.hw{max-width:1160px;margin:0 auto;display:flex;align-items:center;gap:28px;padding-block:14px;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.logo{font-family:var(--num);font-weight:900;font-stretch:125%;font-size:19px;text-decoration:none;color:var(--ink);white-space:nowrap}
+.logo span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.top nav{display:flex;gap:24px;font-size:14px;font-weight:700;margin-left:auto}
+.top nav a{text-decoration:none;color:var(--muted)}
+.top nav a:hover,.top nav a[aria-current]{color:var(--ink)}
+.hbtn{font-size:14px;font-weight:700;text-decoration:none;padding:9px 16px;border-radius:999px;background:var(--ink);color:var(--bg);white-space:nowrap}
+@media (max-width:720px){.top nav{display:none}.hbtn{margin-left:auto}}
+.cta{margin-top:40px;padding:28px;border-radius:20px;background:var(--surface);border:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.cta b{font-size:18px;font-weight:900}
+.cta a{font-weight:700;text-decoration:none;padding:13px 22px;border-radius:999px;background:var(--grad);color:#fff}
+.foot{border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+.foot .hw{justify-content:space-between;flex-wrap:wrap;gap:8px 24px;padding-block:24px}
+.foot a{color:inherit}
+.biz{display:flex;flex-wrap:wrap;gap:2px 14px}
+</style>
+</head>
+<body>
+<header class="top"><div class="hw">
+  <a class="logo" href="/">ELODIE <span>MKT</span></a>
+  <nav aria-label="메인 메뉴">
+    <a href="/#about">회사소개</a><a href="/#service">서비스</a><a href="/#reference">레퍼런스</a><a href="/work/" aria-current="page">진행 내역</a><a href="/#process">진행 과정</a>
+  </nav>
+  <a class="hbtn" href="/#contact">광고 문의</a>
+</div></header>
+<main>
+
+
+<div class="wrap">
+  <div class="eyebrow">WORK</div>
+  <h1>진행 내역</h1>
+  <p class="sub">엘로디가 진행한 캠페인을 월별로 정리했습니다. 항목을 누르면 게시물을 크게 볼 수 있어요.</p>
+
+  <div class="years" role="group" aria-label="연도">
+    <button type="button" id="y2026" data-y="2026" aria-pressed="true">2026</button>
+    <button type="button" id="y2025" data-y="2025" aria-pressed="false">2025</button>
+  </div>
+
+  <div class="sum">
+    <div><b id="sCnt">0</b><span>진행 캠페인</span></div>
+    <div><b id="sBrand">0</b><span>브랜드</span></div>
+    <div><b id="sView">0</b><span>누적 조회수</span></div>
+  </div>
+
+  <div class="filters">
+    <div class="seg" role="group" aria-label="카테고리">
+      <button type="button" id="c-all" data-c="all" aria-pressed="true">전체</button>
+      <button type="button" id="c-b" data-c="뷰티" aria-pressed="false">뷰티</button>
+      <button type="button" id="c-f" data-c="패션" aria-pressed="false">패션</button>
+    </div>
+  </div>
+
+  <div id="list"></div>
+
+  <div class="cta"><b>우리 브랜드도 이렇게 진행해 보고 싶다면</b><a href="/#contact">광고 문의하기</a></div>
+</div>
+
+</main>
+<footer class="foot"><div class="hw">
+  <div class="biz"><span>상호 엘로디</span><span>대표 김지호</span><span>사업자등록번호 755-01-02750</span><span>서울특별시 서초구 바우뫼로7길 8, 801호</span><span>Tel 010-6602-8343</span><span>elodiee@naver.com</span></div>
+  <span><a href="/privacy.html">개인정보처리방침</a> · © 2026 ELODIE MARKETING</span>
+</div></footer>
+
+<div class="lb" id="lb" hidden><figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure><button type="button" id="lbX" aria-label="닫기">✕</button></div>
+
+<script>
+// [날짜, 브랜드, 캠페인, 카테고리, 채널, 조회수, 이미지]
+const W=[
+['2026-10-18','비오엠','라이트 온 바디 톤업','뷰티','X','1.4만','b-x-18'],
+['2026-09-03','다비치','3팩 세일 · 원데이 1+1','뷰티','X','37.4만','b-x-21'],
+['2026-09-01','다비치','콘택트렌즈 3팩 19,800원','뷰티','X','26.4만','b-x-20'],
+['2026-07-21','디오스피스','무신사 빅세일','패션','X','5.2만','f-x-02'],
+['2026-07-18','칙스','가방 타임 핫딜','패션','X','75.9만','f-x-03'],
+['2026-07-15','지그재그','여름 수영복 모음','패션','X','10.8만','f-x-05'],
+['2026-07-09','지그재그','여름 가디건 추천','패션','X','5.8만','f-x-01'],
+['2026-06-27','다비치','명불허전 9,900원 3쌍 이벤트','뷰티','X','18.8만','b-x-19'],
+['2026-06-24','다비치','컬러렌즈 신제품','뷰티','X','9.2만','b-x-02'],
+['2026-06-24','에이블리','블프 할인 추천템','패션','X','3.8만','f-x-04'],
+['2026-06-22','다비치','한달용 렌즈 3쌍 9,900원 할인','뷰티','X','131.5만','b-x-01'],
+['2026-06-16','헬레네파리스','부츠컷 팬츠 직잭팟','패션','X','18.8만','f-x-08'],
+['2026-06-15','스키즘인듀싱','무신사 블프 추천','패션','X','6.4만','f-x-06'],
+['2026-05-25','밈즈','브이로그 쿠션 후기','뷰티','X','1.1만','b-x-06'],
+['2026-05-18','디에이펙트','하이드로 선스크린 RT 이벤트','뷰티','X','1.4만','b-x-14'],
+['2026-05-10','디에이펙트','하이드로 선스크린 RT 이벤트','뷰티','X','2.1만','b-x-15'],
+['2026-05-09','디에이펙트','하이드로 선스크린 RT 이벤트','뷰티','X','1.2만','b-x-07'],
+['2026-05-08','디에이펙트','하이드로 선스크린 RT 이벤트','뷰티','X','1.3만','b-x-13'],
+['2026-05-06','다비치','컬러렌즈 착용 후기','뷰티','X','15.5만','b-x-03'],
+['2026-04-11','메디테라피','핑크 블러 크림 RT 이벤트','뷰티','X','1.6만','b-x-08'],
+['2026-04-10','메디테라피','핑크 블러 크림 RT 이벤트','뷰티','X','1.7만','b-x-16'],
+['2026-04-04','리즈다','제로핏 캡슐 세럼 블러셔','뷰티','X','1.2만','b-x-09'],
+['2026-03-31','지그재그','직잭팟 봄 코디','패션','X','9.6만','f-x-09'],
+['2026-02-06','포인드','일본 마케팅','뷰티','X','1.4만','b-x-11'],
+['2026-02-01','포인드','일본 마케팅','뷰티','X','3.2만','b-x-10'],
+['2025-12-22','MLB','패딩 무신사 프로모션','패션','X','12.9만','f-x-07'],
+['2025-07-04','우알롱','세일 정보','패션','X','15.9만','f-x-12'],
+['2025-03-29','랩입','리트윗 이벤트','뷰티','X','3.4만','b-x-12'],
+['2025-03-15','엄브로','RT 이벤트','패션','X','3.7만','f-x-11'],
+['2025-02-26','비플랫 베네통','RT 이벤트','패션','X','4.1만','f-x-10'],
+['2025-01-26','리필드','아이래쉬 듀얼 앰플 RT 이벤트','뷰티','X','3.6만','b-x-17']
+];
+const toNum=s=>{s=s.replace(/,/g,'');return s.endsWith('만')?parseFloat(s)*1e4:s.endsWith('천')?parseFloat(s)*1e3:parseFloat(s)||0};
+const st={y:'2026',c:'all'};
+const list=document.getElementById('list');
+function render(){
+  const rows=W.filter(r=>r[0].startsWith(st.y)&&(st.c==='all'||r[3]===st.c));
+  document.getElementById('sCnt').textContent=rows.length+'건';
+  document.getElementById('sBrand').textContent=new Set(rows.map(r=>r[1])).size+'곳';
+  const v=rows.reduce((a,r)=>a+toNum(r[5]),0);
+  document.getElementById('sView').textContent=v?(Math.round(v/1e3)/10)+'만':'0';
+  if(!rows.length){list.innerHTML='<div class="empty">'+st.y+'년 진행 내역을 정리해서 보내주시면 여기에 채워져요.</div>';return}
+  const by={};rows.forEach(r=>{const m=r[0].slice(5,7);(by[m]=by[m]||[]).push(r)});
+  list.innerHTML=Object.keys(by).sort().reverse().map(m=>{
+    const g=by[m];
+    return `<section class="month"><h2>${st.y}.${m}<small>${g.length}건</small></h2><ul class="rows">${g.map(r=>`
+      <li class="row" tabindex="0" data-i="${W.indexOf(r)}">
+        <span class="d">${r[0].slice(5).replace('-','.')}</span>
+        <span class="th"><img src="/ref/${r[6]}.jpg" alt="" loading="lazy"></span>
+        <span class="t"><b>${r[1]} · ${r[2]}</b><span class="chips"><span class="chip">${r[3]}</span><span class="chip">${r[4]}</span></span></span>
+        <span class="v"><b>${r[5]}</b><span>조회수</span></span>
+      </li>`).join('')}</ul></section>`}).join('');
+}
+function seg(sel,key){document.querySelectorAll(sel).forEach(b=>b.addEventListener('click',()=>{b.parentElement.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b)); st[key]=b.dataset[key]; render()}))}
+seg('.years button','y');seg('.seg button','c');
+const lb=document.getElementById('lb');
+function open(i){const r=W[i];document.getElementById('lbImg').src='/ref/'+r[6]+'.jpg';document.getElementById('lbCap').textContent=r[0].replace(/-/g,'.')+' · '+r[1]+' · '+r[2]+' · 조회수 '+r[5];lb.hidden=false}
+list.addEventListener('click',e=>{const row=e.target.closest('.row');if(row)open(+row.dataset.i)});
+list.addEventListener('keydown',e=>{if(e.key==='Enter'){const row=e.target.closest('.row');if(row)open(+row.dataset.i)}});
+document.getElementById('lbX').onclick=()=>lb.hidden=true;
+lb.addEventListener('click',e=>{if(e.target===lb)lb.hidden=true});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')lb.hidden=true});
+render();
+</script>
+
+</body>
+</html>
