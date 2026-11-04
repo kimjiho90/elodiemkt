@@ -77,7 +77,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .top nav a:hover,.top nav a[aria-current]{color:var(--ink)}
 .hbtn{font-size:14px;font-weight:700;text-decoration:none;padding:9px 16px;border-radius:999px;background:var(--ink);color:var(--bg);white-space:nowrap}
 @media (max-width:720px){.top nav{display:none}.hbtn{margin-left:auto}}
-.case{display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:18px;align-items:center;margin-top:28px;padding:14px;border-radius:18px;background:var(--surface);border:1px solid var(--line);text-decoration:none;color:var(--ink)}
+.cases{display:grid;gap:12px;margin-top:28px}
+.case{display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:18px;align-items:center;padding:14px;border-radius:18px;background:var(--surface);border:1px solid var(--line);text-decoration:none;color:var(--ink)}
 .case:hover{border-color:var(--accent)}
 .case img{width:96px;height:96px;object-fit:cover;object-position:top;border-radius:12px;border:1px solid var(--line)}
 .case b{display:block;font-size:18px;font-weight:900;margin:2px 0}
@@ -107,34 +108,16 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 <div class="wrap">
   <div class="eyebrow">WORK</div>
   <h1>진행 내역</h1>
-  <p class="sub">엘로디가 진행한 캠페인을 월별로 정리했습니다. 항목을 누르면 게시물을 크게 볼 수 있어요.</p>
+  <p class="sub">엘로디가 진행한 캠페인 사례를 소개합니다. 사례를 누르면 진행 방식과 결과를 자세히 볼 수 있어요.</p>
 
+  <div class="cases">
   <a class="case" href="/work/davich-2026-01/">
     <img src="/work/davich-2026-01/x-01.jpg" alt="">
     <div><span class="eyebrow">캠페인 사례</span><b>다비치 컬러렌즈 X(트위터) 프로모션</b><span class="cs">2026.01 · 주요 X 게시물 4건 · 노출 159.9만</span></div>
     <span class="arr">→</span>
   </a>
-
-  <div class="years" role="group" aria-label="연도">
-    <button type="button" id="y2026" data-y="2026" aria-pressed="true">2026</button>
-    <button type="button" id="y2025" data-y="2025" aria-pressed="false">2025</button>
   </div>
 
-  <div class="sum">
-    <div><b id="sCnt">0</b><span>진행 캠페인</span></div>
-    <div><b id="sBrand">0</b><span>브랜드</span></div>
-    <div><b id="sView">0</b><span>누적 조회수</span></div>
-  </div>
-
-  <div class="filters">
-    <div class="seg" role="group" aria-label="카테고리">
-      <button type="button" id="c-all" data-c="all" aria-pressed="true">전체</button>
-      <button type="button" id="c-b" data-c="뷰티" aria-pressed="false">뷰티</button>
-      <button type="button" id="c-f" data-c="패션" aria-pressed="false">패션</button>
-    </div>
-  </div>
-
-  <div id="list"></div>
 
   <div class="cta"><b>우리 브랜드도 이렇게 진행해 보고 싶다면</b><a href="/#contact">광고 문의하기</a></div>
 </div>
@@ -145,75 +128,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   <span><a href="/privacy.html">개인정보처리방침</a> · © 2026 ELODIE MARKETING</span>
 </div></footer>
 
-<div class="lb" id="lb" hidden><figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure><button type="button" id="lbX" aria-label="닫기">✕</button></div>
 
-<script>
-// [날짜, 브랜드, 캠페인, 카테고리, 채널, 조회수, 이미지]
-const W=[
-['2026-10-18','비오엠','라이트 온 바디 톤업','뷰티','X','1.4만','b-x-18'],
-['2026-09-03','다비치','3팩 세일 · 원데이 1+1','뷰티','X','37.4만','b-x-21'],
-['2026-09-01','다비치','콘택트렌즈 3팩 19,800원','뷰티','X','26.4만','b-x-20'],
-['2026-07-21','디오스피스','무신사 빅세일','패션','X','5.2만','f-x-02'],
-['2026-07-18','칙스','가방 타임 핫딜','패션','X','75.9만','f-x-03'],
-['2026-07-15','지그재그','여름 수영복 모음','패션','X','10.8만','f-x-05'],
-['2026-07-09','지그재그','여름 가디건 추천','패션','X','5.8만','f-x-01'],
-['2026-06-27','다비치','명불허전 9,900원 3쌍 이벤트','뷰티','X','18.8만','b-x-19'],
-['2026-06-24','다비치','컬러렌즈 신제품','뷰티','X','9.2만','b-x-02'],
-['2026-06-24','에이블리','블프 할인 추천템','패션','X','3.8만','f-x-04'],
-['2026-06-22','다비치','한달용 렌즈 3쌍 9,900원 할인','뷰티','X','131.5만','b-x-01'],
-['2026-06-16','헬레네파리스','부츠컷 팬츠 직잭팟','패션','X','18.8만','f-x-08'],
-['2026-06-15','스키즘인듀싱','무신사 블프 추천','패션','X','6.4만','f-x-06'],
-['2026-05-25','밈즈','브이로그 쿠션 후기','뷰티','X','1.1만','b-x-06'],
-['2026-05-18','디에이펙트','하이드로 선스크린 RT 이벤트','뷰티','X','1.4만','b-x-14'],
-['2026-05-10','디에이펙트','하이드로 선스크린 RT 이벤트','뷰티','X','2.1만','b-x-15'],
-['2026-05-09','디에이펙트','하이드로 선스크린 RT 이벤트','뷰티','X','1.2만','b-x-07'],
-['2026-05-08','디에이펙트','하이드로 선스크린 RT 이벤트','뷰티','X','1.3만','b-x-13'],
-['2026-05-06','다비치','컬러렌즈 착용 후기','뷰티','X','15.5만','b-x-03'],
-['2026-04-11','메디테라피','핑크 블러 크림 RT 이벤트','뷰티','X','1.6만','b-x-08'],
-['2026-04-10','메디테라피','핑크 블러 크림 RT 이벤트','뷰티','X','1.7만','b-x-16'],
-['2026-04-04','리즈다','제로핏 캡슐 세럼 블러셔','뷰티','X','1.2만','b-x-09'],
-['2026-03-31','지그재그','직잭팟 봄 코디','패션','X','9.6만','f-x-09'],
-['2026-02-06','포인드','일본 마케팅','뷰티','X','1.4만','b-x-11'],
-['2026-02-01','포인드','일본 마케팅','뷰티','X','3.2만','b-x-10'],
-['2025-12-22','MLB','패딩 무신사 프로모션','패션','X','12.9만','f-x-07'],
-['2025-07-04','우알롱','세일 정보','패션','X','15.9만','f-x-12'],
-['2025-03-29','랩입','리트윗 이벤트','뷰티','X','3.4만','b-x-12'],
-['2025-03-15','엄브로','RT 이벤트','패션','X','3.7만','f-x-11'],
-['2025-02-26','비플랫 베네통','RT 이벤트','패션','X','4.1만','f-x-10'],
-['2025-01-26','리필드','아이래쉬 듀얼 앰플 RT 이벤트','뷰티','X','3.6만','b-x-17']
-];
-const toNum=s=>{s=s.replace(/,/g,'');return s.endsWith('만')?parseFloat(s)*1e4:s.endsWith('천')?parseFloat(s)*1e3:parseFloat(s)||0};
-const st={y:'2026',c:'all'};
-const list=document.getElementById('list');
-function render(){
-  const rows=W.filter(r=>r[0].startsWith(st.y)&&(st.c==='all'||r[3]===st.c));
-  document.getElementById('sCnt').textContent=rows.length+'건';
-  document.getElementById('sBrand').textContent=new Set(rows.map(r=>r[1])).size+'곳';
-  const v=rows.reduce((a,r)=>a+toNum(r[5]),0);
-  document.getElementById('sView').textContent=v?(Math.round(v/1e3)/10)+'만':'0';
-  if(!rows.length){list.innerHTML='<div class="empty">'+st.y+'년 진행 내역을 정리해서 보내주시면 여기에 채워져요.</div>';return}
-  const by={};rows.forEach(r=>{const m=r[0].slice(5,7);(by[m]=by[m]||[]).push(r)});
-  list.innerHTML=Object.keys(by).sort().reverse().map(m=>{
-    const g=by[m];
-    return `<section class="month"><h2>${st.y}.${m}<small>${g.length}건</small></h2><ul class="rows">${g.map(r=>`
-      <li class="row" tabindex="0" data-i="${W.indexOf(r)}">
-        <span class="d">${r[0].slice(5).replace('-','.')}</span>
-        <span class="th"><img src="/ref/${r[6]}.jpg" alt="" loading="lazy"></span>
-        <span class="t"><b>${r[1]} · ${r[2]}</b><span class="chips"><span class="chip">${r[3]}</span><span class="chip">${r[4]}</span></span></span>
-        <span class="v"><b>${r[5]}</b><span>조회수</span></span>
-      </li>`).join('')}</ul></section>`}).join('');
-}
-function seg(sel,key){document.querySelectorAll(sel).forEach(b=>b.addEventListener('click',()=>{b.parentElement.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b)); st[key]=b.dataset[key]; render()}))}
-seg('.years button','y');seg('.seg button','c');
-const lb=document.getElementById('lb');
-function open(i){const r=W[i];document.getElementById('lbImg').src='/ref/'+r[6]+'.jpg';document.getElementById('lbCap').textContent=r[0].replace(/-/g,'.')+' · '+r[1]+' · '+r[2]+' · 조회수 '+r[5];lb.hidden=false}
-list.addEventListener('click',e=>{const row=e.target.closest('.row');if(row)open(+row.dataset.i)});
-list.addEventListener('keydown',e=>{if(e.key==='Enter'){const row=e.target.closest('.row');if(row)open(+row.dataset.i)}});
-document.getElementById('lbX').onclick=()=>lb.hidden=true;
-lb.addEventListener('click',e=>{if(e.target===lb)lb.hidden=true});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')lb.hidden=true});
-render();
-</script>
 
 </body>
 </html>
