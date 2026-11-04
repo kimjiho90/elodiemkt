@@ -77,6 +77,13 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .top nav a:hover,.top nav a[aria-current]{color:var(--ink)}
 .hbtn{font-size:14px;font-weight:700;text-decoration:none;padding:9px 16px;border-radius:999px;background:var(--ink);color:var(--bg);white-space:nowrap}
 @media (max-width:720px){.top nav{display:none}.hbtn{margin-left:auto}}
+.case{display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:18px;align-items:center;margin-top:28px;padding:14px;border-radius:18px;background:var(--surface);border:1px solid var(--line);text-decoration:none;color:var(--ink)}
+.case:hover{border-color:var(--accent)}
+.case img{width:96px;height:96px;object-fit:cover;object-position:top;border-radius:12px;border:1px solid var(--line)}
+.case b{display:block;font-size:18px;font-weight:900;margin:2px 0}
+.case .cs{font-size:13px;color:var(--muted)}
+.case .arr{font-size:22px;color:var(--accent-ink);padding-right:8px}
+@media (max-width:480px){.case{grid-template-columns:72px minmax(0,1fr)}.case img{width:72px;height:72px}.case .arr{display:none}}
 .cta{margin-top:40px;padding:28px;border-radius:20px;background:var(--surface);border:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
 .cta b{font-size:18px;font-weight:900}
 .cta a{font-weight:700;text-decoration:none;padding:13px 22px;border-radius:999px;background:var(--grad);color:#fff}
@@ -101,6 +108,12 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   <div class="eyebrow">WORK</div>
   <h1>진행 내역</h1>
   <p class="sub">엘로디가 진행한 캠페인을 월별로 정리했습니다. 항목을 누르면 게시물을 크게 볼 수 있어요.</p>
+
+  <a class="case" href="/work/davich-2026-01/">
+    <img src="/work/davich-2026-01/x-01.jpg" alt="">
+    <div><span class="eyebrow">캠페인 사례</span><b>다비치 컬러렌즈 X(트위터) 프로모션</b><span class="cs">2026.01 · X 시딩 13건 · 총 노출 186.6만</span></div>
+    <span class="arr">→</span>
+  </a>
 
   <div class="years" role="group" aria-label="연도">
     <button type="button" id="y2026" data-y="2026" aria-pressed="true">2026</button>
