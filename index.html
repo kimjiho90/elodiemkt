@@ -466,10 +466,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap
           <div class="cline"><div><small>KAKAOTALK ID</small><span class="v" id="v-kakao">kzo199</span></div><button class="copy" type="button" id="c-kakao" data-t="v-kakao">복사</button></div>
         </div>
       </div>
-      <form class="qform" id="qform" action="https://formsubmit.co/elodiee@naver.com" method="POST" accept-charset="UTF-8">
-        <input type="hidden" name="_subject" value="[엘로디 홈페이지] 새 광고 문의">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_next" value="https://elodiemkt.kr/thanks.html">
+      <form class="qform" id="qform" action="#" method="POST" accept-charset="UTF-8">
         <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
         <h3>광고 문의</h3>
         <div class="row2">
@@ -669,7 +666,7 @@ document.getElementById('qform').addEventListener('submit',async e=>{
   if(fd.get('_honey')){location.href='/thanks.html';return}
   const ctl=new AbortController(),timer=setTimeout(()=>ctl.abort(),12000);
   try{
-    const r=await fetch('https://formsubmit.co/ajax/elodiee@naver.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data),signal:ctl.signal});
+    const r=await fetch('https://script.google.com/macros/s/AKfycbw8spPf1EbakTCmapd-XlK2c0ucMV0LwEfwiOSLvMjBJP9JXEFra_cdQu1nJfJQq4g7/exec',{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(data),signal:ctl.signal,redirect:'follow'});
     clearTimeout(timer);
     const j=await r.json().catch(()=>({}));
     if(r.ok&&String(j.success)==='true'){location.href='/thanks.html';return}
