@@ -197,6 +197,9 @@ a.copy{text-decoration:none;display:inline-block}
 .feat-nums span{font-size:12.5px;color:var(--muted)}
 @media (max-width:860px){.feat{grid-template-columns:1fr;gap:24px;padding:18px}}
 
+.cslink{display:inline-block;margin-top:10px;font-size:13px;font-weight:700;color:var(--accent-ink);text-decoration:none}
+.cslink:hover{text-decoration:underline}
+
 /* references */
 .refsec{background:var(--surface);border-block:1px solid var(--line)}
 .filters{display:flex;flex-wrap:wrap;gap:20px;margin-bottom:32px;align-items:center}
@@ -555,7 +558,6 @@ const R=[
 ['b','x',16,'메디테라피','핑크 블러 크림 RT 이벤트','1.7만','580','79',1],
 ['b','x',9,'리즈다','제로핏 캡슐 세럼 블러셔','1.2만','8','107',1],
 ['b','x',17,'리필드','아이래쉬 듀얼 앰플 RT 이벤트','3.6만','785','79',1],
-['b','x',18,'비오엠','라이트 온 바디 톤업','1.4만','94','117',1],
 ['b','x',10,'포인드','일본 마케팅','3.2만','','',0],
 ['b','x',11,'포인드','일본 마케팅','1.4만','','',0],
 ['b','x',12,'랩입','리트윗 이벤트','3.4만','554','57',0],
@@ -568,7 +570,6 @@ const R=[
 ['b','s',7,'세레미','샴푸 숏폼 리뷰','11.1만','1,720','23',1],
 ['b','s',8,'토르홉','숏폼 리뷰','39만','426','3',0],
 ['b','s',9,'에이지투웨니스','밤파데 숏폼 리뷰','30.5만','298','73',1],
-['b','s',10,'비오엠','숏폼 리뷰','2.9만','','',1],
 ['f','x',1,'지그재그','여름 가디건 추천','5.8만','493','750',1],
 ['f','x',2,'디오스피스','무신사 빅세일','5.2만','330','541',1],
 ['f','x',3,'칙스','가방 타임 핫딜','75.9만','136','320',1],
@@ -591,9 +592,40 @@ const R=[
 ['f','s',8,'IDWS','무신사 블프 추천템','27.9만','2,350','',1],
 ['f','s',9,'FCMM','숏폼 코디','8.4만','8,330','41',1]
 ];
+// 마케팅 사례 게시물 (홈 레퍼런스 맨 앞에 노출)  [카테고리, 채널, 번호, 브랜드, 캠페인, 지표1, 지표2, 지표3, 고화질, 이미지, 사례주소]
+const CASES=[
+['b','x',1,'다비치','컬러렌즈 연초 할인 프로모션','113.5만','5,000','7,500',1,'/work/davich-2026-01/x-01.jpg','davich-2026-01'],
+['b','x',2,'다비치','컬러렌즈 연초 할인 프로모션','19.9만','551','1,600',1,'/work/davich-2026-01/x-02.jpg','davich-2026-01'],
+['b','x',3,'다비치','컬러렌즈 연초 할인 프로모션','15만','441','1,700',1,'/work/davich-2026-01/x-03.jpg','davich-2026-01'],
+['b','x',4,'다비치','컬러렌즈 연초 할인 프로모션','11.5만','357','1,000',1,'/work/davich-2026-01/x-04.jpg','davich-2026-01'],
+['b','x',1,'다비치','포레아 원데이 출시','21.9만','838','1,900',1,'/work/davich-foraea-oneday/x-01.jpg','davich-foraea-oneday'],
+['b','x',2,'다비치','포레아 원데이 출시','4만','22','142',1,'/work/davich-foraea-oneday/x-02.jpg','davich-foraea-oneday'],
+['b','x',3,'다비치','포레아 원데이 출시','3만','68','322',1,'/work/davich-foraea-oneday/x-03.jpg','davich-foraea-oneday'],
+['b','x',4,'다비치','포레아 원데이 출시','2.8만','23','179',1,'/work/davich-foraea-oneday/x-04.jpg','davich-foraea-oneday'],
+['b','x',5,'다비치','포레아 원데이 출시','1.9만','6','34',1,'/work/davich-foraea-oneday/x-05.jpg','davich-foraea-oneday'],
+['b','x',6,'다비치','포레아 원데이 출시','1.6만','3','33',1,'/work/davich-foraea-oneday/x-06.jpg','davich-foraea-oneday'],
+['b','x',7,'다비치','포레아 원데이 출시','1.4만','8','42',1,'/work/davich-foraea-oneday/x-07.jpg','davich-foraea-oneday'],
+['b','x',8,'다비치','포레아 원데이 출시','1.3만','3','21',1,'/work/davich-foraea-oneday/x-08.jpg','davich-foraea-oneday'],
+['b','x',9,'다비치','포레아 원데이 출시','1.1만','43','80',1,'/work/davich-foraea-oneday/x-09.jpg','davich-foraea-oneday'],
+['b','x',10,'다비치','포레아 원데이 출시','5,499','3','6',1,'/work/davich-foraea-oneday/x-10.jpg','davich-foraea-oneday'],
+['f','x',1,'MLB','패딩 무신사 스포츠위크','17.1만','','',1,'/work/mlb-2025-12/x-01.jpg','mlb-2025-12'],
+['f','x',2,'MLB','패딩 무신사 스포츠위크','16.6만','','',1,'/work/mlb-2025-12/x-02.jpg','mlb-2025-12'],
+['f','x',3,'MLB','패딩 무신사 스포츠위크','13만','','',1,'/work/mlb-2025-12/x-03.jpg','mlb-2025-12'],
+['f','x',4,'MLB','패딩 무신사 스포츠위크','2만','','',1,'/work/mlb-2025-12/x-04.jpg','mlb-2025-12'],
+['b','s',1,'비오엠','바디 톤업 인스타 릴스','3만','','',1,'/work/bom-2026-10/r-01.jpg','bom-2026-10'],
+['b','s',2,'비오엠','바디 톤업 인스타 릴스','1.6만','','',1,'/work/bom-2026-10/r-02.jpg','bom-2026-10'],
+['b','s',3,'비오엠','바디 톤업 인스타 릴스','1.5만','','',1,'/work/bom-2026-10/r-03.jpg','bom-2026-10'],
+['b','s',4,'비오엠','바디 톤업 인스타 릴스','1만','','',1,'/work/bom-2026-10/r-04.jpg','bom-2026-10'],
+['b','x',1,'비오엠','라이트 온 바디 톤업','1.4만','94','117',1,'/work/bom-2026-10/x-01.jpg','bom-2026-10'],
+['b','x',2,'비오엠','라이트 온 바디 톤업','1.1만','23','36',1,'/work/bom-2026-10/x-02.jpg','bom-2026-10'],
+['l','s',1,'바이툴즈','음식물처리기 인스타 릴스','10.2만','','',1,'/work/bytulz-reels/r-01.jpg','bytulz-reels'],
+['l','s',2,'바이툴즈','음식물처리기 인스타 릴스','5.5만','','',1,'/work/bytulz-reels/r-02.jpg','bytulz-reels']
+];
+R.unshift(...CASES);
+
 const toNum=s=>{if(!s)return 0;s=s.replace(/,/g,'');if(s.endsWith('만'))return parseFloat(s)*1e4;if(s.endsWith('천'))return parseFloat(s)*1e3;return parseFloat(s)};
-const img=r=>`ref/${r[0]}-${r[1]}-${String(r[2]).padStart(2,'0')}.jpg`;
-const label={x:'X',s:'숏폼'}, catL={b:'뷰티',f:'패션'};
+const img=r=>r[9]||`ref/${r[0]}-${r[1]}-${String(r[2]).padStart(2,'0')}.jpg`;
+const label={x:'X',s:'숏폼'}, catL={b:'뷰티',f:'패션',l:'리빙'};
 
 // 누적 조회수
 const total=R.reduce((a,r)=>a+toNum(r[5]),0);
@@ -601,33 +633,45 @@ document.getElementById('st-total').innerHTML=Math.floor(total/1e5)*10+'<small>�
 document.getElementById('st-cnt').innerHTML=R.length+'<small>건</small>';
 document.getElementById('basis').textContent='2026년 11월 기준 · 공개 레퍼런스 '+R.length+'건 합산 · 게시물 화면에 표시된 수치';
 
-// 히어로 스트립: 조회수 높은 순
-const ranked=[...R].filter(r=>r[8]).sort((a,b)=>toNum(b[5])-toNum(a[5]));
+
+// 노출 순서: 마케팅 사례 게시물을 먼저(사례별 반응 좋은 순으로 번갈아, X와 숏폼 섞어서) → 나머지는 조회수 순
+const ORDER=(()=>{
+  const bySlug={};CASES.forEach(r=>{(bySlug[r[10]]=bySlug[r[10]]||[]).push(r)});
+  const groups=Object.values(bySlug).map(g=>g.sort((a,b)=>toNum(b[5])-toNum(a[5]))).sort((a,b)=>toNum(b[0][5])-toNum(a[0][5]));
+  const rr=t=>{const qs=groups.map(g=>g.filter(r=>r[1]===t)),out=[];let k=0;while(qs.some(q=>q.length)){const q=qs[k%qs.length];if(q.length)out.push(q.shift());k++}return out};
+  const byV=(a,b)=>toNum(b[5])-toNum(a[5]);
+  const X=rr('x').concat(R.filter(r=>!r[10]&&r[1]==='x').sort(byV));
+  const S=rr('s').concat(R.filter(r=>!r[10]&&r[1]==='s').sort(byV));
+  const out=[];
+  while(X.length||S.length){if(X.length)out.push(X.shift());if(S.length)out.push(S.shift())}
+  return out;
+})();
+// 히어로 스트립: 마케팅 사례 먼저
+const ranked=ORDER.filter(r=>r[8]);
 const tile=r=>`<div class="tile ${r[1]}"><img src="${img(r)}" alt="" loading="eager"><b>▶ ${r[5]}</b></div>`;
 const A=ranked.filter((_,i)=>i%2===0).slice(0,12), B=ranked.filter((_,i)=>i%2===1).slice(0,12);
 document.getElementById('trackA').innerHTML=(A.map(tile).join('')).repeat(2);
 document.getElementById('trackB').innerHTML=(B.map(tile).join('')).repeat(2);
 
 // 레퍼런스 그리드
-const state={cat:'all',type:'all',limit:16};
+const state={cat:'all',type:'all',limit:18};
 const refsEl=document.getElementById('refs'), moreBtn=document.getElementById('moreBtn'), countEl=document.getElementById('count');
 function render(){
-  const list=R.filter(r=>(state.cat==='all'||r[0]===state.cat)&&(state.type==='all'||r[1]===state.type))
-              .sort((a,b)=>toNum(b[5])-toNum(a[5]));
+  const list=ORDER.filter(r=>(state.cat==='all'||r[0]===state.cat)&&(state.type==='all'||r[1]===state.type));
   const heads=r=>r[1]==='x'?['조회수','리트윗','좋아요']:['조회수','좋아요','댓글'];
   refsEl.innerHTML=list.slice(0,state.limit).map(r=>{const h=heads(r);return `
     <article class="ref ${r[1]}">
       <button type="button" class="ph" data-i="${R.indexOf(r)}" aria-label="${r[3]} ${r[4]} 크게 보기"><img src="${img(r)}" alt="${r[3]} ${r[4]} 게시물 화면" loading="lazy"><span class="badge">${catL[r[0]]} · ${label[r[1]]}</span><span class="zoom" aria-hidden="true">⤢</span></button>
       <h3><small>${r[3]}</small>${r[4]}</h3>
-      <dl>${h.map((t,i)=>`<div><dt>${t}</dt><dd class="${i===0?'top':''}">${r[5+i]||'–'}</dd></div>`).join('')}</dl>
+      <dl>${h.map((t,i)=>`<div><dt>${t}</dt><dd class="${i===0?'top':''}">${r[5+i]||'–'}</dd></div>`).join('')}</dl>${r[10]?`<a class="cslink" href="/work/${r[10]}/">마케팅 사례 보기 →</a>`:''}
     </article>`}).join('');
   current=list;
-  countEl.textContent=`${list.length}건 · 조회수 높은 순`;
+  countEl.textContent=`${list.length}건`;
   moreBtn.hidden=list.length<=state.limit;
 }
 document.querySelectorAll('.seg button').forEach(b=>b.addEventListener('click',()=>{
   b.parentElement.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));
-  state[b.dataset.k]=b.dataset.v; state.limit=16; render();
+  state[b.dataset.k]=b.dataset.v; state.limit=18; render();
 }));
 let current=[],pos=0;
 const lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg'),lbCap=document.getElementById('lbCap');
@@ -642,7 +686,7 @@ document.getElementById('lbPrev').onclick=()=>{pos=(pos-1+current.length)%curren
 document.getElementById('lbNext').onclick=()=>{pos=(pos+1)%current.length;show()};
 lb.addEventListener('click',e=>{if(e.target===lb)closeLb()});
 document.addEventListener('keydown',e=>{if(lb.hidden)return;if(e.key==='Escape')closeLb();if(e.key==='ArrowLeft')document.getElementById('lbPrev').click();if(e.key==='ArrowRight')document.getElementById('lbNext').click()});
-moreBtn.addEventListener('click',()=>{state.limit+=16;render()});
+moreBtn.addEventListener('click',()=>{state.limit+=18;render()});
 render();
 
 // 광고주
