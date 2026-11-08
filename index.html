@@ -652,9 +652,13 @@ const ORDER=(()=>{
   return out;
 })();
 // 히어로 스트립: 마케팅 사례 먼저
-const ranked=ORDER.filter(r=>r[8]);
+// 가장 최근에 추가한 마케팅 사례를 맨 앞에, 두 줄 모두 X와 숏폼이 섞이게 배치
+const LATEST=CASES[CASES.length-1][10];
+const ranked=(()=>{const L=ORDER.filter(r=>r[8]&&r[10]===LATEST),O=ORDER.filter(r=>r[8]&&r[10]!==LATEST),out=[];
+  while(L.length){const l=L.shift();out.push(l);const j=O.findIndex(r=>r[1]!==l[1]);if(j>-1)out.push(O.splice(j,1)[0]);else if(O.length)out.push(O.shift())}
+  return out.concat(O)})();
 const tile=r=>`<div class="tile ${r[1]}"><img src="${img(r)}" alt="" loading="eager"><b>▶ ${r[5]}</b></div>`;
-const A=ranked.filter((_,i)=>i%2===0).slice(0,12), B=ranked.filter((_,i)=>i%2===1).slice(0,12);
+const A=ranked.filter((_,i)=>i%4===0||i%4===3).slice(0,12), B=ranked.filter((_,i)=>i%4===1||i%4===2).slice(0,12);
 document.getElementById('trackA').innerHTML=(A.map(tile).join('')).repeat(2);
 document.getElementById('trackB').innerHTML=(B.map(tile).join('')).repeat(2);
 
