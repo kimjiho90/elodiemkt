@@ -182,10 +182,16 @@ nav a:hover{color:var(--ink)}
 .big li{font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:999px;border:1px solid var(--line)}
 .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;flex:none;color:#fff;font-family:var(--num);font-weight:900;font-size:18px}
 .ic.sm{width:36px;height:36px;border-radius:10px;font-size:15px}
-.svc-sub{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:12px}
-.mini{display:flex;gap:12px;align-items:center;padding:16px;border:1px solid var(--line);border-radius:16px;min-width:0}
-.mini h3{font-size:15px;font-weight:900}
-.mini p{font-size:13px;color:var(--muted);line-height:1.5}
+.svc-more-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;margin:36px 0 14px}
+.svc-more-h b{font-size:18px;font-weight:900}
+.svc-more-h span{font-size:14px;color:var(--muted)}
+.svc-sub{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.mid{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.mid-top{display:flex;align-items:center;gap:10px}
+.mid h3{font-size:17px;font-weight:900}
+.mid p{font-size:14px;color:var(--muted);line-height:1.6}
+.mid ul{list-style:none;padding:0;margin:auto 0 0;padding-top:4px;display:flex;flex-wrap:wrap;gap:6px}
+.mid li{font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;border:1px solid var(--line)}
 @media (max-width:900px){.svc-sub{grid-template-columns:1fr 1fr}}
 @media (max-width:640px){.svc-main,.svc-sub{grid-template-columns:1fr}.big{padding:24px}}
 .process{padding-block:72px;border-top:1px solid var(--line)}
@@ -422,11 +428,12 @@ footer .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap
         <article class="big"><span class="ic" style="background:#000;border:1px solid #444">X</span><div class="tag">주력 서비스</div><h3>X(트위터) 인플루언서 마케팅</h3><p>뷰티·패션 인플루언서와 큐레이션 계정으로 신제품, 할인 정보, RT 이벤트를 빠르게 퍼뜨립니다. 단일 게시물 조회수 75.9만까지 만들었습니다.</p><ul><li>인플루언서 게시</li><li>큐레이션 계정</li><li>할인·세일 정보</li><li>RT 이벤트</li></ul></article>
         <article class="big"><span class="ic" style="background:linear-gradient(135deg,#FF0050,#7A2BF5)">S</span><div class="tag">주력 서비스</div><h3>숏폼 인플루언서 마케팅</h3><p>크리에이터가 제품을 직접 써보는 짧은 영상으로 유튜브 쇼츠, 인스타그램 릴스, 틱톡에 자연스럽게 노출합니다.</p><ul><li>유튜브 쇼츠</li><li>인스타그램 릴스</li><li>틱톡</li></ul></article>
       </div>
+      <div class="svc-more-h"><b>함께 진행하는 채널</b><span>X·숏폼과 묶어서, 또는 채널 하나만 따로 맡기셔도 됩니다.</span></div>
       <div class="svc-sub">
-        <div class="mini"><span class="ic sm" style="background:#FF0000">▶</span><div><h3>유튜브 롱폼</h3><p>리뷰 · 하울 · 브랜디드 콘텐츠</p></div></div>
-        <div class="mini"><span class="ic sm" style="background:#03C75A">N</span><div><h3>네이버</h3><p>블로그·인플루언서 체험단 · 키워드 상위노출</p></div></div>
-        <div class="mini"><span class="ic sm" style="background:linear-gradient(45deg,#F9A825,#E1306C 50%,#833AB4)">◎</span><div><h3>인스타그램</h3><p>체험단 · 기자단</p></div></div>
-        <div class="mini"><span class="ic sm" style="background:#FF8A00">C</span><div><h3>카페·커뮤니티</h3><p>커뮤니티 바이럴 · 핫딜 등록</p></div></div>
+        <article class="mid"><div class="mid-top"><span class="ic sm" style="background:#FF0000">▶</span><h3>유튜브 롱폼</h3></div><p>유튜버가 제품을 길게 써보고 리뷰해, 구매 전에 찾아보는 소비자에게 자세한 정보를 전합니다.</p><ul><li>리뷰</li><li>하울</li><li>브랜디드 콘텐츠</li></ul></article>
+        <article class="mid"><div class="mid-top"><span class="ic sm" style="background:#03C75A">N</span><h3>네이버</h3></div><p>블로그·인플루언서 체험단 후기를 쌓아, 네이버에서 제품을 검색했을 때 후기가 보이게 합니다.</p><ul><li>블로그 체험단</li><li>인플루언서 체험단</li><li>키워드 상위노출</li></ul></article>
+        <article class="mid"><div class="mid-top"><span class="ic sm" style="background:linear-gradient(45deg,#F9A825,#E1306C 50%,#833AB4)">◎</span><h3>인스타그램</h3></div><p>체험단·기자단 게시물로 피드와 해시태그 검색에 제품 후기를 늘립니다.</p><ul><li>체험단</li><li>기자단</li></ul></article>
+        <article class="mid"><div class="mid-top"><span class="ic sm" style="background:#FF8A00">C</span><h3>카페·커뮤니티</h3></div><p>타깃 소비자가 모인 카페와 커뮤니티에 제품 이야기와 할인 정보를 퍼뜨립니다.</p><ul><li>커뮤니티 바이럴</li><li>핫딜 등록</li></ul></article>
       </div>
     </div>
   </section>
