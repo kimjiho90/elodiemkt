@@ -195,7 +195,27 @@ nav a:hover{color:var(--ink)}
 .mid li{font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;border:1px solid var(--line)}
 @media (max-width:900px){.svc-sub{grid-template-columns:1fr 1fr}}
 @media (max-width:640px){.svc-main,.svc-sub{grid-template-columns:1fr}.big{padding:24px}}
-.process{padding-block:72px;border-top:1px solid var(--line)}
+.process{padding-block:88px;border-top:1px solid var(--line)}
+.process .sec-head{margin-bottom:28px}
+.pflow{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(5,1fr);gap:12px;counter-reset:pf}
+.pflow>li{counter-increment:pf;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px 20px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.pflow>li::before{content:"0" counter(pf);font-family:var(--num);font-weight:900;font-stretch:125%;font-size:26px;line-height:1;color:var(--accent-ink);margin-bottom:6px}
+.pflow h3{font-size:18px;font-weight:900}
+.pflow p{font-size:14px;color:var(--ink);font-weight:600}
+.pflow ul{list-style:none;padding:0;margin:2px 0 0;display:grid;gap:6px}
+.pflow ul li{font-size:13.5px;color:var(--muted);padding-left:12px;position:relative;line-height:1.5}
+.pflow ul li::before{content:"";position:absolute;left:0;top:.65em;width:4px;height:4px;border-radius:50%;background:var(--accent)}
+.pflow .who{margin-top:auto;padding-top:12px;border-top:1px dashed var(--line);font-size:12.5px;font-weight:700;color:var(--muted)}
+.pflow>li:last-child{background:var(--inv-bg);color:var(--inv-ink);border-color:var(--inv-bg)}
+.pflow>li:last-child p{color:var(--inv-ink)}
+.pflow>li:last-child ul li,.pflow>li:last-child .who{color:var(--inv-muted)}
+.pflow>li:last-child .who{border-color:var(--inv-line)}
+.ph-note{color:var(--muted);font-size:15px;max-width:360px}
+.pcta{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-top:20px;padding:18px 22px;border:1px solid var(--line);border-radius:16px;background:var(--surface)}
+.pcta span{font-weight:700}
+@media (max-width:1100px){.pflow{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:760px){.pflow{grid-template-columns:1fr 1fr}.pflow>li:last-child{grid-column:1/-1}}
+@media (max-width:480px){.pflow{grid-template-columns:1fr}}
 .flow{list-style:none;padding:0;margin:18px 0 0;display:grid;grid-template-columns:repeat(5,1fr);counter-reset:f}
 .flow li{counter-increment:f;padding:18px 18px 18px 0;border-top:2px solid var(--line);display:grid;gap:4px;min-width:0;position:relative}
 .flow li::before{content:"0" counter(f);font-family:var(--num);font-weight:900;font-size:13px;color:var(--accent-ink)}
@@ -353,9 +373,9 @@ footer .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap
     <nav aria-label="메인 메뉴">
       <a href="#about">회사소개</a>
       <a href="#service">서비스</a>
+      <a href="#process">진행 과정</a>
       <a href="#reference">레퍼런스</a>
       <a href="/work/">마케팅 사례</a>
-      <a href="#process">진행 과정</a>
             <a href="#contact">문의</a>
     </nav>
     <a class="hbtn" href="#contact">광고 문의</a>
@@ -436,6 +456,26 @@ footer .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap
     </div>
   </section>
 
+  <section class="process" id="process">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <div class="eyebrow">Process</div>
+          <h2>이렇게 진행합니다</h2>
+        </div>
+        <p class="ph-note">문의부터 결과 보고까지, 다른 실행사에 넘기지 않고 엘로디가 직접 맡습니다.</p>
+      </div>
+      <ol class="pflow">
+        <li><h3>문의·상담</h3><p>제품과 목표를 먼저 듣습니다.</p><ul><li>제품, 타깃, 예산, 희망 일정 확인</li><li>신제품 알리기·할인 홍보 등 목표 정리</li><li>비슷한 업종 진행 사례 공유</li></ul><span class="who">브랜드 준비: 제품 링크, 프로모션 정보</span></li>
+        <li><h3>채널·인원 제안</h3><p>목표에 맞는 채널 조합과 인원을 제안합니다.</p><ul><li>X·숏폼·커뮤니티 등 채널 조합 설계</li><li>인플루언서 후보 리스트와 계정 반응 정리</li><li>채널별 진행 범위와 견적 안내</li></ul><span class="who">브랜드 확인: 후보 인원, 견적</span></li>
+        <li><h3>섭외·가이드 확정</h3><p>대표가 직접 섭외하고 진행 기준을 맞춥니다.</p><ul><li>인플루언서 직접 섭외, 재대행 없음</li><li>필수 문구·광고 표기·금지 표현 가이드 정리</li><li>제품 발송과 업로드 일정 조율</li></ul><span class="who">브랜드 확인: 가이드, 업로드 일정</span></li>
+        <li><h3>업로드·진행 관리</h3><p>일정표대로 올라가는지 끝까지 챙깁니다.</p><ul><li>업로드 일정 관리, 누락·지연 대응</li><li>가이드·광고 표기 반영 여부 확인</li><li>게시물 반응 확인, X는 큐레이션 계정으로 확산</li></ul><span class="who">진행 현황 수시 공유</span></li>
+        <li><h3>결과 보고</h3><p>숫자로 정리해서 전달합니다.</p><ul><li>게시물별 조회수·좋아요·재게시·북마크 정리</li><li>반응 좋았던 게시물과 이유 분석</li><li>다음 캠페인 방향 제안</li></ul><span class="who">결과 보고서 전달</span></li>
+      </ol>
+      <div class="pcta"><span>우리 제품은 어떤 채널이 맞을지 궁금하다면</span><a class="btn primary" href="#contact">캠페인 문의하기</a></div>
+    </div>
+  </section>
+
   <section class="sec refsec" id="reference">
     <div class="wrap">
       <div class="sec-head">
@@ -469,18 +509,6 @@ footer .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap
     </div>
   </section>
 
-  <section class="process" id="process">
-    <div class="wrap">
-      <div class="eyebrow">Process</div>
-      <ol class="flow">
-        <li><b>문의</b><span>제품, 예산, 일정 공유</span></li>
-        <li><b>제안·견적</b><span>채널과 인원, 견적 제안</span></li>
-        <li><b>섭외·일정 확정</b><span>인플루언서 확정, 가이드 전달</span></li>
-        <li><b>업로드</b><span>일정에 맞춰 게시, 진행 관리</span></li>
-        <li><b>결과 보고</b><span>조회수·반응 보고서 전달</span></li>
-      </ol>
-    </div>
-  </section>
 
   <section class="sec contact" id="contact">
     <div class="wrap">
