@@ -675,7 +675,16 @@ const CASES=[
 ['b','s',4,'애경 블레이','다이소 향수 인스타 릴스','30.3만','','',1,'/work/aekyung-vlei-daiso/r-04.jpg','aekyung-vlei-daiso'],
 ['b','s',5,'애경 블레이','다이소 향수 틱톡','14.3만','','',1,'/work/aekyung-vlei-daiso/r-05.jpg','aekyung-vlei-daiso'],
 ];
+// 예전 사례: 마케팅 사례 페이지 링크는 달되, 첫 화면·레퍼런스 앞쪽에는 올리지 않고 맨 뒤에 둠
+const OLD=[
+['b','x',1,'글린트','로즈쿼츠 블러셔','1.6만','7','64',1,'/work/color-cosmetics-x/x-01.jpg','color-cosmetics-x'],
+['b','x',2,'네츄럴샤인','럭스 트리플 립큐어밤','1.6만','8','40',1,'/work/color-cosmetics-x/x-02.jpg','color-cosmetics-x'],
+['b','x',3,'네츄럴샤인','럭스 트리플 립큐어밤','1.4만','3','42',1,'/work/color-cosmetics-x/x-03.jpg','color-cosmetics-x'],
+['b','x',4,'글린트','하이라이터','1.2만','2','34',1,'/work/color-cosmetics-x/x-04.jpg','color-cosmetics-x'],
+['b','x',5,'글린트','베이크드 블러셔','1만','17','31',1,'/work/color-cosmetics-x/x-05.jpg','color-cosmetics-x'],
+];
 R.unshift(...CASES);
+R.push(...OLD);
 
 const toNum=s=>{if(!s)return 0;s=s.replace(/,/g,'');if(s.endsWith('만'))return parseFloat(s)*1e4;if(s.endsWith('천'))return parseFloat(s)*1e3;return parseFloat(s)};
 const img=r=>r[9]||`ref/${r[0]}-${r[1]}-${String(r[2]).padStart(2,'0')}.jpg`;
@@ -700,7 +709,7 @@ const ORDER=(()=>{
   const S=rr('s').concat(R.filter(r=>!r[10]&&r[1]==='s').sort(byV));
   const out=[];
   while(X.length||S.length){if(X.length)out.push(X.shift());if(S.length)out.push(S.shift())}
-  return out;
+  return out.concat(OLD);
 })();
 // 히어로 스트립: 마케팅 사례 먼저
 // 가장 최근에 추가한 마케팅 사례를 맨 앞에, 두 줄 모두 X와 숏폼이 섞이게 배치
