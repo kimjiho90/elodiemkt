@@ -687,7 +687,7 @@ R.unshift(...CASES);
 R.push(...OLD);
 
 const toNum=s=>{if(!s)return 0;s=s.replace(/,/g,'');if(s.endsWith('만'))return parseFloat(s)*1e4;if(s.endsWith('천'))return parseFloat(s)*1e3;return parseFloat(s)};
-const img=r=>r[9]||`ref/${r[0]}-${r[1]}-${String(r[2]).padStart(2,'0')}.jpg`;
+const img=r=>(r[9]||`ref/${r[0]}-${r[1]}-${String(r[2]).padStart(2,'0')}.jpg`).replace(/\.jpg$/,'.webp');
 const label={x:'X',s:'숏폼'}, catL={b:'뷰티',f:'패션',l:'리빙'};
 
 // 누적 조회수
@@ -717,10 +717,10 @@ const LATEST=CASES[CASES.length-1][10];
 const ranked=(()=>{const L=ORDER.filter(r=>r[8]&&r[10]===LATEST),O=ORDER.filter(r=>r[8]&&r[10]!==LATEST),out=[];
   while(L.length){const l=L.shift();out.push(l);const j=O.findIndex(r=>r[1]!==l[1]);if(j>-1)out.push(O.splice(j,1)[0]);else if(O.length)out.push(O.shift())}
   return out.concat(O)})();
-const tile=r=>`<div class="tile ${r[1]}"><img src="${img(r)}" alt="" loading="eager"><b>▶ ${r[5]}</b></div>`;
+const tile=(r,i)=>`<div class="tile ${r[1]}"><img src="${img(r)}" alt="${i<12?r[3]+' '+r[4]+' '+label[r[1]]+' 마케팅 게시물':''}" loading="${i<5?'eager':'lazy'}" decoding="async" width="400" height="500"><b>▶ ${r[5]}</b></div>`;
 const A=ranked.filter((_,i)=>i%4===0||i%4===3).slice(0,12), B=ranked.filter((_,i)=>i%4===1||i%4===2).slice(0,12);
-document.getElementById('trackA').innerHTML=(A.map(tile).join('')).repeat(2);
-document.getElementById('trackB').innerHTML=(B.map(tile).join('')).repeat(2);
+document.getElementById('trackA').innerHTML=A.concat(A).map(tile).join('');
+document.getElementById('trackB').innerHTML=B.concat(B).map(tile).join('');
 
 // 레퍼런스 그리드
 const state={cat:'all',type:'all',limit:18};
