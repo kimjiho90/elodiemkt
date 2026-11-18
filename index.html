@@ -308,6 +308,12 @@ a.copy{text-decoration:none;display:inline-block}
 @media (max-width:960px){.steps{grid-template-columns:1fr 1fr}.steps li:last-child{grid-column:1/-1}}
 @media (max-width:480px){.steps{grid-template-columns:1fr}}
 
+/* insight link above contact */
+.insight-strip{padding-block:56px}
+.insight-link{display:flex;align-items:center;gap:18px;padding:22px 26px;border:1px solid var(--line);border-radius:18px;background:var(--surface);text-decoration:none;color:var(--ink)}
+.insight-link:hover{border-color:var(--accent)}
+.insight-link b{font-size:18px;font-weight:900}
+.insight-link .arr{margin-left:auto;font-size:22px;color:var(--accent-ink)}
 /* contact */
 .contact{background:var(--inv-bg);color:var(--inv-ink);position:relative;overflow:hidden}
 .contact::after{content:"";position:absolute;right:-10%;bottom:-40%;width:60%;aspect-ratio:1;border-radius:50%;background:var(--grad);opacity:.22;filter:blur(80px);pointer-events:none}
@@ -509,6 +515,10 @@ footer .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap
     </div>
   </section>
 
+
+  <section class="insight-strip" aria-label="마케팅 인사이트">
+    <div class="wrap"><a class="insight-link" href="/insight/"><span class="eyebrow">Insight</span><b>마케팅 인사이트</b><span class="arr">→</span></a></div>
+  </section>
 
   <section class="sec contact" id="contact">
     <div class="wrap">
