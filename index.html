@@ -784,8 +784,13 @@ render();
 const clients=[...new Set([...R].sort((a,b)=>toNum(b[5])-toNum(a[5])).map(r=>r[3]))];
 document.getElementById('cloud').innerHTML=clients.map(c=>`<span>${c}</span>`).join('');
 
+// 연락처 클릭 추적 (전화·카톡·메일 문의도 집계)
+const trackContact=m=>{try{gtag('event','contact_click',{method:m})}catch(_){}};
+document.querySelectorAll('a[href^="mailto:"]').forEach(a=>a.addEventListener('click',()=>trackContact('email_app')));
 // 복사
 document.querySelectorAll('.copy').forEach(btn=>btn.addEventListener('click',()=>{
+  if(!btn.dataset.t) return;
+  trackContact({'v-tel':'phone_copy','v-kakao':'kakao_copy','v-mail':'email_copy'}[btn.dataset.t]||'copy');
   const el=document.getElementById(btn.dataset.t), txt=el.textContent.trim();
   const reset=()=>setTimeout(()=>btn.textContent='복사',1600);
   const fallback=()=>{const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='선택됨';reset()};
