@@ -782,7 +782,7 @@ render();
 
 // 광고주
 // 레퍼런스 게시물은 없지만 실제 진행 완료한 브랜드
-const CLIENT_EXTRA=['모렌트','딘토','아누아','무신사','플라이밀','스킨퍼즐랩'];
+const CLIENT_EXTRA=['모렌트','아누아','플라이밀','스킨퍼즐랩'];
 const clients=[...new Set([...[...R].sort((a,b)=>toNum(b[5])-toNum(a[5])).map(r=>r[3]),...CLIENT_EXTRA])];
 document.getElementById('cloud').innerHTML=clients.map(c=>`<span>${c}</span>`).join('');
 
