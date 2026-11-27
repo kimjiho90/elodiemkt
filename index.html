@@ -411,9 +411,9 @@ footer .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap
     </div>
     <div class="stats">
       <div class="wrap">
-        <div class="stat"><div class="n" id="st-total">680<small>만+</small></div><div class="l">누적 조회수</div></div>
+        <div class="stat"><div class="n" id="st-total">1,500<small>만+</small></div><div class="l">누적 조회수</div></div>
         <div class="stat"><div class="n" id="st-xmax">21.9<small>만</small></div><div class="l">단일 게시물 최고 조회수 (X)</div></div>
-        <div class="stat"><div class="n" id="st-cnt">500<small>건+</small></div><div class="l">누적 진행 콘텐츠</div></div>
+        <div class="stat"><div class="n" id="st-cnt">1,000<small>건+</small></div><div class="l">누적 진행 콘텐츠</div></div>
         <div class="stat"><div class="n" id="st-smax">96<small>만</small></div><div class="l">숏폼 최고 조회수</div></div>
       </div>
       <div class="wrap basis" id="basis">2026년 11월 기준 · 2025~2026 진행 캠페인 기준</div>
@@ -673,8 +673,6 @@ const img=r=>(r[9]||`ref/${r[0]}-${r[1]}-${String(r[2]).padStart(2,'0')}.jpg`).r
 const label={x:'X',s:'숏폼'}, catL={b:'뷰티',f:'패션',l:'리빙'};
 
 // 누적 조회수
-const total=R.reduce((a,r)=>a+toNum(r[5]),0);
-document.getElementById('st-total').innerHTML=Math.floor(total/1e5)*10+'<small>만+</small>';
 const mx=t=>{const v=Math.max(...R.filter(r=>r[1]===t).map(r=>toNum(r[5])))/1e4;return (Math.round(v*10)/10)+'<small>만</small>'};
 document.getElementById('st-xmax').innerHTML=mx('x');document.getElementById('st-smax').innerHTML=mx('s');
 
