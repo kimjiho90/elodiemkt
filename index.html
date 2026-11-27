@@ -783,7 +783,9 @@ render();
 // 광고주
 // 레퍼런스 게시물은 없지만 실제 진행 완료한 브랜드
 const CLIENT_EXTRA=['모렌트','아누아','플라이밀','스킨퍼즐랩'];
-const clients=[...new Set([...[...R].sort((a,b)=>toNum(b[5])-toNum(a[5])).map(r=>r[3]),...CLIENT_EXTRA])];
+// 레퍼런스에는 있지만 엘로디가 직접 진행하지 않은 브랜드 (함께한 브랜드 목록에서 제외)
+const CLIENT_HIDE=new Set(['칙스','소라노','오드스튜디오','에이지투웨니스','IDWS','헬레네파리스','스탠드오일','세레미','ERTR','FCMM','스키즘인듀싱','루나','디오스피스','꼬모니노즈','데케트우먼','네이밍','포인드']);
+const clients=[...new Set([...[...R].sort((a,b)=>toNum(b[5])-toNum(a[5])).map(r=>r[3]),...CLIENT_EXTRA])].filter(c=>!CLIENT_HIDE.has(c));
 document.getElementById('cloud').innerHTML=clients.map(c=>`<span>${c}</span>`).join('');
 
 // 연락처 클릭 추적 (전화·카톡·메일 문의도 집계)
