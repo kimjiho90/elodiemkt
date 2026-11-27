@@ -411,12 +411,12 @@ footer .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap
     </div>
     <div class="stats">
       <div class="wrap">
-        <div class="stat"><div class="n" id="st-total">680<small>만+</small></div><div class="l">레퍼런스 누적 조회수</div></div>
+        <div class="stat"><div class="n" id="st-total">680<small>만+</small></div><div class="l">누적 조회수</div></div>
         <div class="stat"><div class="n" id="st-xmax">21.9<small>만</small></div><div class="l">단일 게시물 최고 조회수 (X)</div></div>
-        <div class="stat"><div class="n" id="st-cnt">42<small>건</small></div><div class="l">뷰티·패션 공개 레퍼런스</div></div>
+        <div class="stat"><div class="n" id="st-cnt">500<small>건+</small></div><div class="l">누적 진행 콘텐츠</div></div>
         <div class="stat"><div class="n" id="st-smax">96<small>만</small></div><div class="l">숏폼 최고 조회수</div></div>
       </div>
-      <div class="wrap basis" id="basis">2026년 11월 기준 · 공개 레퍼런스 합산 · 게시물 화면에 표시된 수치</div>
+      <div class="wrap basis" id="basis">2026년 11월 기준 · 2025~2026 진행 캠페인 기준</div>
     </div>
   </section>
 
@@ -675,10 +675,8 @@ const label={x:'X',s:'숏폼'}, catL={b:'뷰티',f:'패션',l:'리빙'};
 // 누적 조회수
 const total=R.reduce((a,r)=>a+toNum(r[5]),0);
 document.getElementById('st-total').innerHTML=Math.floor(total/1e5)*10+'<small>만+</small>';
-document.getElementById('st-cnt').innerHTML=R.length+'<small>건</small>';
 const mx=t=>{const v=Math.max(...R.filter(r=>r[1]===t).map(r=>toNum(r[5])))/1e4;return (Math.round(v*10)/10)+'<small>만</small>'};
 document.getElementById('st-xmax').innerHTML=mx('x');document.getElementById('st-smax').innerHTML=mx('s');
-document.getElementById('basis').textContent='2026년 11월 기준 · 공개 레퍼런스 '+R.length+'건 합산 · 게시물 화면에 표시된 수치';
 
 
 // 노출 순서: 마케팅 사례 게시물을 먼저(사례별 반응 좋은 순으로 번갈아, X와 숏폼 섞어서) → 나머지는 조회수 순
